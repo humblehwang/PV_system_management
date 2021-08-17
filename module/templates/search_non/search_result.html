@@ -1,0 +1,411 @@
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/bootstrap.css') }}">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/datepicker.css') }}">
+<style type="text/css">
+.form-check-input-reverse{
+ margin-left: 10px;
+}
+
+.btn-group-fab {
+  position: fixed; 
+  width: 50px;
+  height: auto;
+  right: 20px; bottom: 20px;
+}
+.btn-group-fab div {
+  position: relative; width: 100%;
+  height: auto;
+}
+.btn-group-fab .btn {
+  position: absolute;
+  bottom: 0;
+  border-radius: 50%;
+  display: block;
+  margin-bottom: 4px;
+  width: 40px; height: 40px;
+  margin: 4px auto;
+}
+.btn-group-fab .btn-main {
+  width: 50px; height: 50px;
+  right: 50%; margin-right: -25px;
+  z-index: 9;
+}
+.btn-group-fab .btn-sub {
+  bottom: 0; z-index: 8;
+  right: 50%;
+  margin-right: -20px;
+  -webkit-transition: all 2s;
+  transition: all 0.5s;
+}
+.btn-group-fab .form_btn .btn-sub{
+  bottom: 0; z-index: 8;
+  right: 50%;
+  margin-right: -20px;
+  -webkit-transition: all 2s;
+  transition: all 0.5s;
+}
+.btn-group-fab.active .btn-sub:nth-child(2) {
+  bottom: 60px;
+}
+.btn-group-fab.active .btn-sub:nth-child(3) {
+  bottom: 110px;
+}
+
+</style>
+{% block body %}
+
+<div class="container">
+     {% if user_email != '' %}
+	  <div class="alert alert-info" role="alert">
+	    此案件電訪人員為<b>{{user_email}}</b>    
+	  </div> 
+    {% endif %}
+    {% if user_email == '' %}
+	  <div class="alert alert-info" role="alert">
+	    此案件無電訪人員   
+	  </div> 
+    {% endif %} 
+    
+    
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">開發中案件基本資料</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">此備案所有電訪記錄</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">管控表資訊</a>
+  </li>    
+</ul>
+    
+    
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+  	<!-- for the basic infromation part -->
+  	<div class="row">
+		<div class="col-sm">
+			<div class="form-group">
+				<label for="ele0">籌設許可名稱 <span class="badge badge-danger">不可編輯</span></label>
+				<input class="form-control" type="text" id="ele0" value="{{data_list[1]}}" disabled>
+				<small id="ele0" class="form-text text-muted">這欄位無法編輯</small>
+			</div>
+			<div class="form-group">
+				<label for="rec_id">發文日期</label>
+				<input class="form-control" type="text" id="ele1" value="{{data_list[0]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">用地變更分類</label>
+				<input class="form-control" type="text" id="ele8" value="{{data_list[8]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">申請籌設容量(kW)</label>
+				<input class="form-control" type="text" id="ele3" value="{{data_list[3]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">籌備處</label>
+				<input class="form-control" type="text" id="ele4" value="{{data_list[4]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">取得電業籌設容量</label>
+				<input class="form-control" type="text" id="ele5" value="{{data_list[5]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">縣市</label>
+				<input class="form-control" type="text" id="ele6" value="{{data_list[6]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">發電廠部分廠址</label>
+				<textarea class="form-control"  id="ele2" rows="7">{{data_list[2]}}</textarea>
+			</div>
+			<div class="form-group">
+				<label for="rec_id">土地狀態</label>
+				<input class="form-control" type="text" id="ele7" value="{{data_list[7]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">升壓站容許或變更</label>
+				<input class="form-control" type="text" id="ele9" value="{{data_list[9]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">併聯點</label>
+				<input class="form-control" type="text" id="ele10" value="{{data_list[10]}}">
+			</div>
+		</div>
+		<div class="col-sm">
+			<div class="form-group">
+				<label for="rec_id">備註</label>
+				<input class="form-control" type="text" id="ele11" value="{{data_list[11]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">聯絡人</label>
+				<input class="form-control" type="text" id="ele12" value="{{data_list[12]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">聯絡人電話</label>
+				<input class="form-control" type="text" id="ele13" value="{{data_list[13]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">完成併聯審查日期</label>
+				<input class="form-control" type="text" id="ele14" value="{{data_list[14]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">申請籌備創設日期</label>
+				<input class="form-control" type="text" id="ele15" value="{{data_list[15]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">取得籌備創設日期</label>
+				<input class="form-control" type="text" id="ele16" value="{{data_list[16]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">取得土地容許或完成用地變更日期</label>
+				<input class="form-control" type="text" id="ele17" value="{{data_list[17]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">申請施工許可日期</label>
+				<input class="form-control" type="text" id="ele18" value="{{data_list[18]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">取得施工許可日期</label>
+				<input class="form-control" type="text" id="ele19" value="{{data_list[19]}}">
+	</div>
+            			<div class="form-group">
+				<label for="rec_id">申請人或機構</label>
+				<input class="form-control" type="text" id="ele20" value="{{data_list[20]}}">
+	</div>
+             			<div class="form-group">
+				<label for="rec_id">設置位置</label>
+				<input class="form-control" type="text" id="ele21" value="{{data_list[21]}}">
+	</div>
+             			<div class="form-group">
+				<label for="rec_id">施工許可取得容量</label>
+				<input class="form-control" type="text" id="ele22" value="{{data_list[22]}}">
+	</div>           
+              			<div class="form-group">
+				<label for="rec_id">案件現況</label>
+				<textarea class="form-control"  id="ele23" rows="7">{{data_list[23]}}</textarea>                            
+	</div>          
+            
+            			<div class="form-group">
+				<label for="rec_id">階段</label>
+				<input class="form-control" type="text" id="ele24" value="{{data_list[24]}}">
+	</div>
+            
+            			<div class="form-group">
+				<label for="rec_id">是否管考</label>
+				<input class="form-control" type="text" id="ele25" value="{{data_list[25]}}">
+	</div>           
+  </div>
+ </div>       
+</div>
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+  	<!-- for telephone record part -->
+  	<select id="select_date" class="form-control">
+	    <option selected="true" disabled="true">選擇電訪日期</option>
+	    {% for data in time_list%}
+	    <option value = "{{ data }}">{{ data }}電訪記錄</option>
+	    {% endfor %}
+	  </select>
+      
+	  <div id="tel_detail">
+	  	      <div class="row">
+		        <div class="col-sm">
+		          <div class="form-group">
+		            <label for="tele0">籌設許可名稱</label>
+		            <input class="form-control" type="text" id="tele0" value="{{data_list[1]}}" disabled>
+		          </div>
+		          <div class="form-group">
+		            <label for="tele1">電訪時間</label>
+		            <input class="form-control" type="text" id="tele1" value="" >
+		          </div>
+		          <div class="form-group">
+		            <label for="tele2">施工狀況</label>
+		            <input class="form-control" type="text" id="tele2" value="" >
+		          </div>
+		          <div class="form-group">
+		            <label for="tele6">此紀錄上傳時間</label>
+		            <input class="form-control" type="text" id="tele6" value="此為系統自定義，不需編輯" disabled>
+		          </div>
+		        </div>
+		        <div class="col-sm">
+		          <div class="form-group">
+		            <label for="tele3">預計完工日</label>
+		            <input class="form-control" type="text" id="tele3" value="" >
+		          </div>
+		          <div class="form-group">
+		            <label for="tele4">問題分類</label>
+		            <input class="form-control" type="text" id="tele4" value="" >
+		          </div>
+		          <div class="form-group">
+		            <label for="tele5">問題描述</label>
+		            <input class="form-control" type="text" id="tele5" value="" >
+		          </div>
+		        </div>
+		      </div>
+	  </div>
+  </div>
+
+    
+ <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+  	<!-- for control key point information part -->
+  	<table id="myTable" class=" table order-list">
+	                <thead>
+	                    <tr>
+				            <th scope="col">關鍵事項</th>
+				            <th scope="col">主責單位</th>
+				            <th scope="col">預定完成時間</th>
+				            <th scope="col">辦理情形</th>
+				            <th scope="col"></th>
+				        </tr>
+	                </thead>
+	                <tbody>
+	                	{% for element in ctbl_list[0] %}
+	                	<tr>
+				            <td class="key_form">
+				                <input type="text" id="case{{loop.index}}-1" class="form-control" value="{{element}}"/>
+				            </td>
+				            <td class="key_form">
+				                <input type="text" id="case{{loop.index}}-2" class="form-control" value="{{ctbl_list[1][loop.index-1]}}"/>
+				            </td>
+				            <td class="key_form">
+				                <input type="text" id="case{{loop.index}}-3" class="form-control" value="{{ctbl_list[2][loop.index-1]}}"/>
+				            </td>
+				            <td class="key_form">
+                                <textarea class="form-control"  id="case{{loop.index}}-4" rows="3">{{ctbl_list[3][loop.index-1]}}</textarea>
+				                
+				            </td>
+				        </tr>
+	                	{% endfor %}
+	                </tbody>
+	</table>
+  </div>    
+
+<div id="host_content"></div>
+</div>
+
+ 
+ 
+ <form  class="form_btn"  id="dn_btn2" ></form>
+ <div class="btn-group-fab" role="group" aria-label="FAB Menu">
+  <div>
+    <button type="button" class="btn btn-main btn-primary" data-toggle="tooltip" data-placement="left" title="可用功能"> <i class="fa fa-bars"></i> </button>
+    <button type="button" class="btn btn-sub btn-info" id="sendRecord" data-toggle="tooltip" data-placement="left" title="儲存變更"> <i class="far fa-paper-plane"></i> </button>
+  </div>
+</div>
+
+
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/search_non/popper.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/datepicker.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/datepicker_zhtw.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/search_non/home.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/ajaxSend.js') }}"></script>
+<script src="https://kit.fontawesome.com/58618a9e1b.js" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    
+function date_init(div_id){
+	$(div_id).datepicker({
+    format: "yyyy-mm-dd",
+    autoclose: true,
+    clearBtn: true,
+    calendarWeeks: true,
+    todayHighlight: true,
+    language: 'zh-TW'
+    });
+}
+	// for fab btn
+	 $('.btn-group-fab').on('click', '.btn', function() {
+	    $('.btn-group-fab').toggleClass('active');
+	  });
+
+	var sing_case = document.getElementById("select_date");
+	sing_case.addEventListener('change', function(){
+		var date = $("#select_date option:selected").val();
+        var set_num = $("#ele0").val();
+	    request = {"date": date, "set_number": set_num}
+	    ajaxSend(request, "searchTelResult", "#tel_detail");
+	});
+
+		// for sending edited record
+		date_init('#ele1');
+		date_init('#ele14');
+		date_init('#ele15');
+		date_init('#ele16');
+		date_init('#ele17');
+		date_init('#ele18');
+		date_init('#ele19');
+
+		date_init('#case1-3');
+		date_init('#case2-3');
+		date_init('#case3-3');
+		date_init('#case4-3');
+		date_init('#case5-3');
+    
+        date_init('#tele1');
+		date_init('#tele3');
+        date_init('#tele6');
+    
+	  var db_btn = document.getElementById("sendRecord");
+	  db_btn.addEventListener('click',function(){
+          var result = [];
+          var result2 = [];
+          var data;
+      // iteraterate over all the nput field to get value
+          for (var i = 1; i <= 25; i++) {
+              // text field
+
+             data = $("#ele"+i).val();
+              
+              result.push(data)
+            }//for
+
+            for (var i = 0; i <= 6; i++){
+                data = $("#tele"+i).val();
+                result2.push(data)
+            }
+
+            // reorder the pro num for basic data
+            result.splice(1, 0, $("#ele0").val());
+
+
+            
+         
+            // tel record not render
+            if(result2[0] == undefined)
+                result2 = [$("#ele0").val(),'','','','','','']
+            console.log(result2)
+          
+          
+		// process the keypoint form
+		let str_array = ['','','','']
+		$(".key_form .form-control").each(function(index) {
+			str_array[index%4] += ($(this).val()+"%");
+		});
+
+		str_array[0] = str_array[0].slice(0, -1);
+		str_array[1] = str_array[1].slice(0, -1);
+		str_array[2] = str_array[2].slice(0, -1);
+		str_array[3] = str_array[3].slice(0, -1);
+
+		if(str_array[0].split("%").length != 5){
+			let remain = 5 - str_array[0].split("%").length;
+			for(var i = 0; i < remain; i++){
+				str_array[0] += "%";
+				str_array[1] += "%";
+				str_array[2] += "%";
+				str_array[3] += "%";
+			}
+		}          
+          
+          
+          
+          
+          
+          console.log("result",result);
+            //$("#host_content").html(waiting_con);
+            request = {"result" : result, "result2" : result2, "result3":str_array}
+            ajaxSend(request, "storeSing", "#host_content");
+	  })
+</script>
+
+{% endblock %}

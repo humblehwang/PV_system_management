@@ -1,0 +1,22 @@
+<form id="upload_file">
+  <div class="custom-file">
+    <input type="file" class="custom-file-input" id="editfile_uploader" accept=".xlsx">
+    <label class="custom-file-label" for="customFile">上傳想新版修改過的開發中案件清冊</label>
+  </div>
+</form>
+<!-- <input class="btn btn-primary" id="file_submit_btn" type="submit" value="上傳檔案"> -->
+
+<script>
+	// File upload function
+	var editfileUploader = document.querySelector('#editfile_uploader');
+	// Listen for the file input change
+	editfileUploader.addEventListener('change', (f) => {
+		var loading_con = '<br><br><br><div class="d-flex flex-column align-items-center justify-content-center"><div class="row"><div class="spinner-border" role="status" style="width: 5rem; height: 5rem;"><span class="sr-only">Loading...</span></div></div><br><div class="row"><strong>處理資料中....</strong></div></div></div>'
+		$("#host_content").html(loading_con);
+		var fileobject = document.getElementById("editfile_uploader").files[0];
+		var formData = new FormData;
+		formData.append('file', fileobject);
+		ajaxSendData(formData, "fileEditDiff", "#host_content");
+	});
+
+</script>

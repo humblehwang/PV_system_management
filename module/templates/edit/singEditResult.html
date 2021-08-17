@@ -1,0 +1,11 @@
+{% if flag == 1 %}
+<script type="text/javascript">
+	alert("修改成功");
+	location.reload(true);
+</script>
+{% else %}
+<script type="text/javascript">
+	alert("修改失敗，請查看伺服器log以獲取更多資訊");
+	location.reload(true);
+</script>
+{% endif %}

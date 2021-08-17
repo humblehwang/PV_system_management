@@ -1,0 +1,38 @@
+
+
+
+  <div class="card-header" id="headingOne">
+    <h2 style="font-family: 'Microsoft JhengHei'; ">案件管考資料</h2> 
+      <h2 class="mb-0">
+        <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      點擊延展內容
+    </button>
+      </h2>
+    </div>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body">
+      <div class="row">
+
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="ele0">備案編號or籌設許可名稱</label>
+            <input class="form-control" type="text" id="ele0" value="{{data_list[0]}}" disabled>
+          </div>
+
+          <div class="form-group">
+            <label for="ele1">申請人或機構</label>
+            <input class="form-control" type="text" id="ele1" value="{{data_list[1]}}" disabled>
+          </div>
+          <div class="form-group">
+            <label for="ele2">管考狀態</label>
+            <input class="form-control" type="text" id="ele2" value="{{data_list[2]}}" disabled>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<br>
+
+
+
+  <script type="text/javascript">$('.collapse').collapse('hide')</script>

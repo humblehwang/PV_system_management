@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/firebase@6.1.0/firebase.js"></script>
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script>
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-analytics.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-firestore.js"></script>
+
+
+<script>
+var firebaseConfig = {
+    apiKey: "AIzaSyAYm3PUeQpMR62EQzBCNoX4SJsl6jPRZcM",
+    authDomain: "itriwebsystem.firebaseapp.com",
+    databaseURL: "https://itriwebsystem.firebaseio.com",
+    projectId: "itriwebsystem",
+    storageBucket: "itriwebsystem.appspot.com",
+    messagingSenderId: "694056489044",
+    appId: "1:694056489044:web:295ae1c91d9603df385dc1",
+    measurementId: "G-YMGMG1ENZB"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+</script>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/user/checklogin.js') }}?ver=1"></script>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="author" content="Kodinger">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>使用者資訊 </title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="static/css/my-login.css">
+</head>
+    
+    
+    
+
+
+
+    
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/bootstrap.css') }}">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/all.min.css') }}">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/datepicker.css') }}">
+
+
+<div class="wrapper d-flex align-items-stretch">
+<nav id="sidebar">
+		<div class="custom-menu">
+			<button type="button" id="sidebarCollapse" class="btn btn-primary">
+	          <i class="fas fa-bars"></i>
+	          <span class="sr-only">Toggle Menu</span>
+	        </button>
+        </div>
+		<div class="p-4 pt-5">
+		  	<h4><a href="#" class="logo"><img src="/static/img/logo1.png" width="200" height="100" class="d-inline-block align-top" alt=""></a></h4>
+		  	<h6 class="font-weight-bolder">太陽光電達標管考資訊平台</h6>
+		  	<br>
+	        <ul class="list-unstyled components mb-5">
+	          <li class="active">
+                  <a href="#" class="font-weight-bolder">平台首頁(待建立)</a>
+	          </li>
+                
+                
+<li>
+              <a href="#pageSubmenu_non" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle font-weight-bolder">開發中案件</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu_non">
+                <li>
+                    <a href="/uploadNon" class="font-weight-bolder">上傳新案件</a>
+                </li>
+
+		                <li>
+		                	<a href="/editNon" class="font-weight-bolder">上傳編輯檔案</a>
+		                </li>
+
+                <li>
+                    <a href="/searchNon" class="font-weight-bolder">查詢和編輯案件</a>
+                </li>
+              </ul>
+	          </li> 
+
+
+                
+<li>
+              <a href="#pageSubmenu_apply" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle font-weight-bolder">同意備案</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu_apply">
+                <li>
+                    <a href="/upload" class="font-weight-bolder">上傳新案件</a>
+                </li>
+
+		                <li>
+		                	<a href="/edit" class="font-weight-bolder">上傳編輯檔案</a>
+		                </li>
+
+                <li>
+                    <a href="/search" class="font-weight-bolder">查詢和編輯案件</a>
+                </li>
+                <li>
+                    <a href="/control" class="font-weight-bolder">管控表編輯</a>
+                </li>
+                                  <li>
+                    <a href="/upload/tel" class="font-weight-bolder">電訪記錄上傳</a>
+                </li>
+              </ul>
+	          </li>                
+                
+                
+                
+<li>
+              <a href="#pageSubmenu_control" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle font-weight-bolder">其他功能</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu_control">
+            <li>
+                    <a href="/other" class="font-weight-bolder">管控案件上傳</a>
+                </li>
+
+		                <li>
+		                	<a href="/other/table" class="font-weight-bolder">統計圖表</a>
+		                </li>
+
+ 
+		                <li>
+		                	<a href="/other/format" class="font-weight-bolder">檔案格式修正</a>
+		                </li>
+
+                  		                <li>
+		                	<a href="/other/delete" class="font-weight-bolder">刪除同意備案編號</a>
+		                </li>
+              </ul>
+	          </li> 
+
+
+                
+<li>                
+                
+                
+                
+            
+            <li>
+              <a href="#pageSubmenu_user" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle font-weight-bolder">使用者</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu_user">
+                <li>
+                    <a href="/reset" class="font-weight-bolder">更改密碼</a>
+                </li>
+                <li>
+                    <a href="/userinfo" class="font-weight-bolder">使用者資訊</a>
+                </li>
+                <li>
+                    <button id="signout_btn" type="submit" class="btn btn-light">登出</button>
+                </li>
+              </ul>
+	         </li>
+            
+            </ul>
+            
+	      </div>
+    	</nav>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/search/popper.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/datepicker.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/datepicker_zhtw.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/user/logout.js') }}?ver=1"></script>
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+    
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/user/info.js') }}?ver=1"></script>

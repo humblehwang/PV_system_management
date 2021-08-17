@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<script src="https://cdn.jsdelivr.net/npm/firebase@6.1.0/firebase.js"></script>
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script>
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-analytics.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-firestore.js"></script>
+
+
+<script>
+var firebaseConfig = {
+    apiKey: "AIzaSyAYm3PUeQpMR62EQzBCNoX4SJsl6jPRZcM",
+    authDomain: "itriwebsystem.firebaseapp.com",
+    databaseURL: "https://itriwebsystem.firebaseio.com",
+    projectId: "itriwebsystem",
+    storageBucket: "itriwebsystem.appspot.com",
+    messagingSenderId: "694056489044",
+    appId: "1:694056489044:web:295ae1c91d9603df385dc1",
+    measurementId: "G-YMGMG1ENZB"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+</script>
+
+
+
+
+
+
+
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="author" content="Kodinger">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>My Login Page &mdash; Bootstrap 4 Login Page Snippet</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="static/css/my-login.css">
+</head>
+<body class="my-login-page">
+	<section class="h-100">
+		<div class="container h-100">
+			<div class="row justify-content-md-center align-items-center h-100">
+				<div class="card-wrapper">
+					<div class="brand">
+						<img src="static/img/logo.jpg" width="400" height="200" alt="bootstrap 4 login page">
+					</div>
+					<div class="card fat">
+						<div class="card-body">
+							<h4 class="card-title">Forgot Password</h4>
+							<form method="POST" class="my-login-validation" novalidate="">
+								<div class="form-group">
+									<label for="email">E-Mail Address</label>
+									<input id="email" type="email" class="form-control" name="email" value="" required autofocus>
+									<div class="invalid-feedback">
+										Email is invalid
+									</div>
+									<div class="form-text text-muted">
+										By clicking "Reset Password" we will send a password reset link
+									</div>
+								</div>
+
+								<div class="form-group m-0">
+									<button id="send_btn" type="submit" class="btn btn-primary btn-block">
+										Reset Password
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="footer">
+						Copyright &copy; 2020 &mdash; ITRI 
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/user/forgot.js') }}?ver=1"></script>
+
+</body>
+</html>

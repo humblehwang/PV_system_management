@@ -1,0 +1,483 @@
+
+ <h3>此份檔案案件總數為{{re_num}}筆</h3>
+ <br>
+
+
+    <p>
+        
+  {% if case_type_len > 0 %}      
+  <a class="btn btn-outline-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">案件型別({{case_type_len}})</a>
+{% endif %}    
+        
+        <!--
+  <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">統計分類 ({{project_type_len}})</button>
+        <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample4">使用分區 ({{use_type_len}})</button>
+      <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#multiCollapseExample5" aria-expanded="false" aria-controls="multiCollapseExample5">用地類別 ({{land_type_len}})</button>
+        -->
+        {% if status_len > 0 %}
+        <button class="btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">案件狀態 ({{status_len}})</button>
+{% endif %}
+        {% if sell_method_len > 0 %}
+      <button class="btn btn-outline-primary"type="button" data-toggle="collapse" data-target="#multiCollapseExample6" aria-expanded="false" aria-controls="multiCollapseExample6">售電方式 ({{sell_method_len}})</button>
+ {% endif %}       
+        
+  {% if status_tel_len > 0 %}      
+  <a class="btn btn-outline-primary" data-toggle="collapse" href="#multiCollapseExample7" role="button" aria-expanded="false" aria-controls="multiCollapseExample7">案場施工狀況({{status_tel_len}})</a>
+{% endif %}    
+
+
+        
+  {% if question_len > 0 %}      
+  <a class="btn btn-outline-primary" data-toggle="collapse" href="#multiCollapseExample8" role="button" aria-expanded="false" aria-controls="multiCollapseExample8">案場問題分類({{question_len}})</a>
+{% endif %}    
+        
+   {% if question_TAIPOWER_len > 0 %}      
+  <a class="btn btn-outline-primary" data-toggle="collapse" href="#multiCollapseExample9" role="button" aria-expanded="false" aria-controls="multiCollapseExample9">台電問題分類({{question_TAIPOWER_len}})</a>
+{% endif %}     
+   {% if sta_month_len > 0 %}      
+  <a class="btn btn-outline-primary" data-toggle="collapse" href="#multiCollapseExample10" role="button" aria-expanded="false" aria-controls="multiCollapseExample10">能源統計月報計入({{sta_month_len}})</a>
+{% endif %}    
+        <button type="button" class="btn btn-info" id="sendCheck">確認更改</button>
+
+        
+        <form action="/other/DownFormatFile" method="POST" id="dn_btn1"></form>
+
+        <p id="dl_form" style="display: inline;"></p>
+
+
+
+</p>
+
+
+
+
+<div class="row">
+{% if case_type_len >0 %}
+    <div class="collapse multi-collapse" id="multiCollapseExample1">
+      <div class="card card-body">
+ {% for index in range (case_type_len) %}
+   <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="case_type{{index}}">{{case_type[index]}}</label>
+  </div>
+  <select class="custom-select" id="case_type{{index}}"+>
+    <option selected="true" disabled="true">選擇...</option>
+    <option value="第一型">第一型</option>
+    <option value="第三型">第三型</option>
+
+  </select>
+</div>       
+    {% endfor %}   
+    </div>
+  </div>
+{% endif %}    
+    
+    
+<!--
+    <div class="collapse multi-collapse" id="multiCollapseExample2">
+      <div class="card card-body">
+ {% for index2 in range (project_type_len) %}
+   <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="project_type{{index2}}">{{project_type[index2]}}</label>
+  </div>
+  <select class="custom-select" id="project_type{{index2}}">
+    <option selected="true" disabled="true">選擇...</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
+</div>       
+    {% endfor %}   
+    </div>
+  </div>
+-->    
+    
+{% if status_len >0 %}
+    <div class="collapse multi-collapse" id="multiCollapseExample3">
+      <div class="card card-body">
+ {% for index3 in range (status_len) %}
+   <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="status{{index3}}">{{status[index3]}}</label>
+  </div>
+  <select class="custom-select" id="status{{index3}}">
+    <option selected="true" disabled="true">選擇...</option>
+    <option value="已有簽約紀錄">已有簽約紀錄</option>
+    <option value="已完工(獨立型)">已完工(獨立型)</option>
+    <option value="已完工併網">已完工併網</option>
+    <option value="已取得同意備案核准">已取得同意備案核准</option>
+    <option value="放棄或失效">放棄或失效</option>   
+  </select>
+</div>       
+    {% endfor %}   
+    </div>
+  </div>
+{% endif %}    
+<!--
+    <div class="collapse multi-collapse" id="multiCollapseExample4">
+      <div class="card card-body">
+          
+ {% for index4 in range (use_type_len) %}          
+   <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="use_type{{index4}}">{{use_type[index4]}}</label>
+  </div>
+  <select class="custom-select" id="use_type{{index4}}">
+    <option selected="true" disabled="true">選擇...</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
+</div>       
+    {% endfor %}     
+          
+          
+
+    </div>
+  </div>
+    
+    
+
+    <div class="collapse multi-collapse" id="multiCollapseExample5">
+      <div class="card card-body">
+ {% for index5 in range (land_type_len) %}            
+   <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="land_type{{index5}}">{{land_type[index5]}}</label>
+  </div>
+  <select class="custom-select" id="land_type{{index5}}">
+    <option selected="true" disabled="true">選擇...</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
+</div>       
+    {% endfor %}   
+          
+
+    </div>
+  </div>
+    
+-->
+    {% if sell_method_len > 0 %}
+    <div class="collapse multi-collapse" id="multiCollapseExample6">
+      <div class="card card-body">
+ {% for index6 in range (sell_method_len) %}
+   <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="sell_method{{index6}}">{{sell_method[index6]}}</label>
+  </div>
+  <select class="custom-select" id="sell_method{{index6}}">
+    <option selected="true" disabled="true">選擇...</option>
+    <option value="售電">售電</option>
+    <option value="無售電">無售電</option>
+
+  </select>
+</div>       
+    {% endfor %}   
+    </div>
+  </div>
+{% endif %}    
+    
+
+    
+    
+    
+    {% if status_tel_len > 0 %}
+    <div class="collapse multi-collapse" id="multiCollapseExample7">
+      <div class="card card-body">
+ {% for index7 in range (status_tel_len) %}
+   <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="status_tel{{index7}}">{{status_tel[index7]}}</label>
+  </div>
+  <select class="custom-select" id="status_tel{{index7}}">
+    <option selected="true" disabled="true">選擇...</option>
+    <option value="未施工">未施工</option>
+    <option value="已施工">已施工</option>
+    <option value="已完工">已完工</option>
+    <option value="放棄、暫不施作">放棄、暫不施作</option>
+  </select>
+</div>       
+    {% endfor %}       
+    </div>
+  </div>
+{% endif %}       
+    
+    {% if question_len > 0 %}
+    <div class="collapse multi-collapse" id="multiCollapseExample8">
+      <div class="card card-body">
+ {% for index8 in range (question_len) %}
+   <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="question{{index8}}">{{question[index8]}}</label>
+  </div>
+  <select class="custom-select" id="question{{index8}}">
+    <option selected="true" disabled="true">選擇...</option>
+    <option value="02-04 相關文件未取得 - 路權">02-04 相關文件未取得 - 路權</option>
+    <option value="02-05 相關文件未取得 - 使用執照、雜照">02-05 相關文件未取得 - 使用執照、雜照</option>
+    <option value="03-01 缺工">03-01 缺工</option>
+    <option value="04-01 缺料">04-01 缺料</option>
+    <option value="05-01 鄉民因素">05-01 鄉民因素</option>
+    <option value="06-01 其他原因">06-01 其他原因</option>
+  </select>
+</div>       
+    {% endfor %}       
+    </div>
+  </div>
+{% endif %}       
+        
+    
+    
+    {% if question_TAIPOWER_len > 0 %}
+    <div class="collapse multi-collapse" id="multiCollapseExample9">
+      <div class="card card-body">
+ {% for index9 in range (question_TAIPOWER_len) %}
+   <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="question_TAIPOWER{{index9}}">{{question_TAIPOWER[index9]}}</label>
+  </div>
+  <select class="custom-select" id="question_TAIPOWER{{index9}}">
+    <option selected="true" disabled="true">選擇...</option>
+    <option value="簽約未完成">簽約未完成</option>
+    <option value="路證未取得">路證未取得</option>
+    <option value="細部協商(外線規劃設計)未取得">細部協商(外線規劃設計)未取得</option>
+    <option value="線路補助費未繳交">線路補助費未繳交</option>
+    <option value="外線未完工">外線未完工</option> 
+    <option value="業者未報竣">業者未報竣</option>   
+    <option value="掛表未完成">掛表未完成</option>   
+    <option value="其他原因">其他原因</option> 
+  </select>
+</div>       
+    {% endfor %}       
+    </div>
+  </div>
+{% endif %}          
+    
+    {% if sta_month_len > 0 %}
+    <div class="collapse multi-collapse" id="multiCollapseExample10">
+      <div class="card card-body">
+ {% for index10 in range (sta_month_len) %}
+   <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="sta_month{{index10}}">{{sta_month[index10]}}</label>
+  </div>
+  <select class="custom-select" id="sta_month{{index10}}">
+    <option selected="true" disabled="true">選擇...</option>
+    <option value="107年度">107年度</option>
+    <option value="108年度">108年度</option>
+    <option value="109年度">109年度</option>
+  </select>
+</div>       
+    {% endfor %}       
+    </div>
+  </div>
+{% endif %}          
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+  <script type="text/javascript">
+
+
+
+var sendCheck = document.getElementById("sendCheck");
+sendCheck.addEventListener("click", function() {
+
+    var sell_method_array = []
+    if({{sell_method_len}}>0){
+    
+
+        for(i=0;i<{{sell_method_len}};i++){
+            targetID = "sell_method"+i.toString();
+            //target = "{{sell_method}}";
+            //e = document.getElementById(targetID);
+            e = document.getElementById(targetID);
+
+            //console.log("target",targetID);
+            //console.log("target",target,i);
+            console.log("sdf",e.options[e.selectedIndex].text);
+            //var tmp = {"{{sell_method[i]}}":e.options[e.selectedIndex].text}
+            sell_method_array.push(e.options[e.selectedIndex].text);  
+        
+        }
+        console.log(sell_method_array);
+    }
+    
+    var case_type_array = []
+    if({{case_type_len}}>0){
+     
+
+    for(i=0;i<{{case_type_len}};i++){
+        targetID = "case_type"+i.toString();
+        //e = document.getElementById(targetID);
+        e = document.getElementById(targetID);
+
+        //console.log("target",targetID);
+        //console.log("target",e);
+        console.log("sdf",e.options[e.selectedIndex].text);
+        case_type_array.push(e.options[e.selectedIndex].text);   
+    }
+    console.log(case_type_array);  
+    }
+    /*
+        var project_type_array = []
+
+    for(i=0;i<{{project_type_len}};i++){
+        targetID = "project_type"+i.toString();
+        //e = document.getElementById(targetID);
+        e = document.getElementById(targetID);
+
+        //console.log("target",targetID);
+        //console.log("target",e);
+        console.log("sdf",e.options[e.selectedIndex].text);
+        project_type_array.push(e.options[e.selectedIndex].text);   
+    }
+    console.log(project_type_array);  
+    */
+    
+     var status_array = []
+if({{status_len}}>0){
+    for(i=0;i<{{status_len}};i++){
+        targetID = "status"+i.toString();
+        //e = document.getElementById(targetID);
+        e = document.getElementById(targetID);
+
+        //console.log("target",targetID);
+        //console.log("target",e);
+        console.log("sdf",e.options[e.selectedIndex].text);
+        status_array.push(e.options[e.selectedIndex].text);   
+    }
+    console.log(status_array);   
+    }
+    /*
+     var use_type_array = []
+
+    for(i=0;i<{{use_type_len}};i++){
+        targetID = "use_type"+i.toString();
+        //e = document.getElementById(targetID);
+        e = document.getElementById(targetID);
+
+        //console.log("target",targetID);
+        //console.log("target",e);
+        console.log("sdf",e.options[e.selectedIndex].text);
+        use_type_array.push(e.options[e.selectedIndex].text);   
+    }
+    console.log(use_type_array);         
+    */
+    
+    /*
+     var land_type_array = []
+
+    for(i=0;i<{{land_type_len}};i++){
+        targetID = "land_type"+i.toString();
+        //e = document.getElementById(targetID);
+        e = document.getElementById(targetID);
+
+        //console.log("target",targetID);
+        //console.log("target",e);
+        console.log("sdf",e.options[e.selectedIndex].text);
+        land_type_array.push(e.options[e.selectedIndex].text);   
+    }
+    console.log(land_type_array);       
+    */
+    var status_tel_array = []
+    if({{status_tel_len}}>0){
+    
+
+        for(i=0;i<{{status_tel_len}};i++){
+            targetID = "status_tel"+i.toString();
+            //target = "{{sell_method}}";
+            //e = document.getElementById(targetID);
+            e = document.getElementById(targetID);
+
+            //console.log("target",targetID);
+            //console.log("target",target,i);
+            console.log("sdf",e.options[e.selectedIndex].text);
+            //var tmp = {"{{sell_method[i]}}":e.options[e.selectedIndex].text}
+            status_tel_array.push(e.options[e.selectedIndex].text);  
+        
+        }
+        console.log(status_tel_array);
+    }
+    var question_array = []
+    if({{question_len}}>0){
+    
+
+        for(i=0;i<{{question_len}};i++){
+            targetID = "question"+i.toString();
+            //target = "{{sell_method}}";
+            //e = document.getElementById(targetID);
+            e = document.getElementById(targetID);
+
+            //console.log("target",targetID);
+            //console.log("target",target,i);
+            console.log("sdf",e.options[e.selectedIndex].text);
+            //var tmp = {"{{sell_method[i]}}":e.options[e.selectedIndex].text}
+            question_array.push(e.options[e.selectedIndex].text);  
+        
+        }
+        console.log(question_array);
+    }
+    var question_TAIPOWER_array = []
+    if({{question_TAIPOWER_len}}>0){
+    
+
+        for(i=0;i<{{question_TAIPOWER_len}};i++){
+            targetID = "question_TAIPOWER"+i.toString();
+            //target = "{{sell_method}}";
+            //e = document.getElementById(targetID);
+            e = document.getElementById(targetID);
+
+            //console.log("target",targetID);
+            //console.log("target",target,i);
+            console.log("sdf",e.options[e.selectedIndex].text);
+            //var tmp = {"{{sell_method[i]}}":e.options[e.selectedIndex].text}
+            question_TAIPOWER_array.push(e.options[e.selectedIndex].text);  
+        
+        }
+        console.log(question_TAIPOWER_array);
+    }
+   var sta_month_array = []
+    if({{sta_month_len}}>0){
+    
+
+        for(i=0;i<{{sta_month_len}};i++){
+            targetID = "sta_month"+i.toString();
+            //target = "{{sell_method}}";
+            //e = document.getElementById(targetID);
+            e = document.getElementById(targetID);
+
+            //console.log("target",targetID);
+            //console.log("target",target,i);
+            console.log("sdf",e.options[e.selectedIndex].text);
+            //var tmp = {"{{sell_method[i]}}":e.options[e.selectedIndex].text}
+            sta_month_array.push(e.options[e.selectedIndex].text);  
+        
+        }
+        console.log(sta_month_array);
+    }    
+    request = [sell_method_array,case_type_array,status_array,status_tel_array,question_array,question_TAIPOWER_array,sta_month_array]
+    ajaxSend(request,"DownFormatFile", "#dyn_content");
+    alert("更改成功，請下載檔案並透過同意備案上傳，將檔案上傳至系統");
+	$("#dl_form").html('<button type="submit" class="btn btn-danger" form="dn_btn1">下載清冊</button>');
+});//sendCheck
+    
+
+      
+
+  </script>

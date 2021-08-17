@@ -1,0 +1,447 @@
+
+<div class="card-header" id="headingOne">
+	<h2 style="font-family: 'Microsoft JhengHei'; ">案件關鍵事項</h2>
+	<h2 class="mb-0"> 
+		<button class="btn btn-info" type="button" data-toggle="modal" data-target="#Modal1">點擊顯示內容</button>
+	</h2>
+</div>
+<br>
+
+
+<div class="card-header" id="headingtwo">
+    <h2 style="font-family: 'Microsoft JhengHei'; ">案件管控表甘特圖</h2> 
+      	<div class="row">
+			<div class="col-sm">
+				<button class="btn btn-info" type="button" data-toggle="modal" data-target="#Modal2"> 點擊顯示內容</button>
+			</div>
+	</div>
+</div>
+<br>
+<div>
+	<span>&nbsp;</span><button type="button" class="btn btn-outline-danger" onclick="sendclicked()">儲存變更</button>
+</div>
+<!-- Modal -->
+<div class="modal fade bd-example-modal-xl" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">案件關鍵事項</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+				<table id="myTable" class=" table order-list">
+	                <thead>
+	                    <tr>
+				            <th scope="col">關鍵事項</th>
+				            <th scope="col">主責單位</th>
+				            <th scope="col">預定完成時間</th>
+				            <th scope="col">辦理情形</th>
+				            <th scope="col"></th>
+				        </tr>
+	                </thead>
+	                <tbody>
+                                    <label for="review">用地審查or土地變更</label>
+                                    <select class="form-control" id="review">
+                                        <option value={{review}} selected="true" >{{review}}</option>
+                                          <option value='免土地變更及免土地容許'>免土地變更及免土地容許</option>
+                                          <option value='土地變更'>土地變更</option>
+                                          <option value='土地容許'>土地容許</option>                                        
+                                    </select>   
+                        <br><br>
+                                    <label for="review">出流管制 or 海岸管理</label>
+                                    <select class="form-control" id="review2">
+                                        <option value={{review2}} selected="true" >{{review2}}</option>
+                                          <option value='免出流管制及免海岸管理'>免出流管制及免海岸管理</option>
+                                          <option value='出流管制'>出流管制</option>
+                                          <option value='海岸管理'>海岸管理</option>  
+                                          <option value='出流管制+海岸管理'>出流管制+海岸管理</option>                                          
+                                    </select>                           
+                        <br><br>
+	                	{% for element in key_point[1] %}
+	                		{% if loop.index <= key_point[6]|int %}
+		                		<tr>
+						            <td class="key_form">
+						                <input type="text" id="case{{loop.index}}-1" class="form-control" value="{{element}}"/>
+						            </td>
+						            <td class="key_form">
+						                <input type="text" id="case{{loop.index}}-2" class="form-control" value="{{key_point[2][loop.index-1]}}"/>
+						            </td>
+						            <td class="key_form">
+						                <input type="text" id="case{{loop.index}}-3" class="form-control" value="{{key_point[3][loop.index-1]}}"/>
+						            </td>
+						            <td class="key_form">
+						                <input type="text" id="case{{loop.index}}-4" class="form-control" value="{{key_point[4][loop.index-1]}}"/>
+						            </td>
+        
+
+						            <td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete">
+						            </td>
+						        </tr>
+						        <script type="text/javascript">date_init("#case{{loop.index}}-3");</script>
+			                {% endif %}
+	                	{% endfor %}
+				        
+	                </tbody>
+	                <tfoot>
+				        <tr>
+				            <td colspan="5" style="text-align: left;">
+				                <input type="button" class="btn btn-lg btn-outline-primary" id="addrow" value="增加一筆事項" />
+				            </td>
+				        </tr>
+				    </tfoot>
+	            </table>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- for the second modal -->
+<!-- Modal -->
+<div class="modal fade bd-example-modal-xl" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content" style="height: 60%;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">時程表資料</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<div class="row">
+	      	<div class="col-3">
+	      		<label for="sel1">選擇查核點</label>
+	            <select class="form-control" id="sel1">
+	            	<option selected disabled>Choose a Phase to edit</option>
+	                <option mytag = "0">4-9</option>
+	                <option mytag = "1">4-10</option>
+	                <option mytag = "2">5-1</option>
+	                <option mytag = "3">6-1</option>
+	                <option mytag = "4">6-2</option>
+	                <option mytag = "5">7-1</option>
+	                <option mytag = "6">7-2</option>
+	                <option mytag = "7">7-3</option>
+	                <option mytag = "8">7-4</option>
+	                <option mytag = "9">7-5</option>
+	                <option mytag = "10">7-6</option>
+	                <option mytag = "11">7-7</option>
+	                <option mytag = "12">7-8</option>
+	                <option mytag = "13">7-9</option>
+	                <option mytag = "14">7-10</option>
+	                <option mytag = "15">8-1</option>
+	                <option mytag = "16">8-2</option>
+	                <option mytag = "17">8-3</option>
+	                <option mytag = "18">8-4</option>
+	                <option mytag = "19">8-5</option>
+	                <option mytag = "20">9-1</option>
+	                <option mytag = "21">9-2</option>
+	                <option mytag = "22">9-3</option>
+	                <option mytag = "23">9-4</option>
+	                <option mytag = "24">9-5</option>
+	                <option mytag = "25">9-6</option>
+	                <option mytag = "26">9-7</option>
+	                <option mytag = "27">10-1</option>
+	                <option mytag = "28">10-2</option>
+	                <option mytag = "29">10-3</option>
+	                <option mytag = "30">10-4</option>
+	                <option mytag = "31">10-5</option>
+	                <option mytag = "32">11-1</option>
+	                <option mytag = "33">11-2</option>                    
+	            </select>
+	            <hr>
+	            <br>
+	            <div id="gantt_form">
+	            </div>
+	      	</div>
+	      	<div class="col-9">
+		      	<!-- gantt chart -->
+				<div class="gantt">
+					請選擇開始時間和完成時間以顯示甘特圖
+				</div>
+			</div>
+		</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script type="text/javascript">
+    console.log("hihihihihih");
+	var timeline_list = {{ timeline|tojson }};
+    var apply_date = {{ apply_date|tojson }};
+	var base_list = {{key_point|tojson}};
+	var counter;
+	$(document).ready(function () {
+	    counter = parseInt(base_list[6]);
+
+	    $("#addrow").on("click", function () {
+	    	if(counter == 5){
+	    		alert('最多只能5筆關鍵事項!!');
+	    	}else{
+	    		var newRow = $("<tr>");
+		        var cols = "";
+
+		        cols += '<td class="key_form"><input type="text" class="form-control" id="case' + counter + '-1"/></td>';
+		        cols += '<td class="key_form"><input type="text" class="form-control" id="case' + counter + '-2"/></td>';
+		        cols += '<td class="key_form"><input type="text" class="form-control" id="case' + counter + '-3"/></td>';
+		        cols += '<td class="key_form"><input type="text" class="form-control" id="case' + counter + '-4"/></td>';
+
+		        cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>';
+		        newRow.append(cols);
+		        $("table.order-list").append(newRow);
+		        date_init('#case' + counter + '-3');
+		        counter++;
+	    	}
+	    });
+
+
+	    $("table.order-list").on("click", ".ibtnDel", function (event) {
+	        $(this).closest("tr").remove();       
+	        counter -= 1;
+	    });
+
+
+});
+
+console.log("hiddddddddddhihihihih");
+
+function calculateRow(row) {
+    var price = +row.find('input[name^="price"]').val();
+
+}
+
+function calculateGrandTotal() {
+ 	var grandTotal = 0;
+    $("table.order-list").find('input[name^="price"]').each(function () {
+        grandTotal += +$(this).val();
+    });
+    $("#grandtotal").text(grandTotal.toFixed(2));
+}
+
+
+
+
+// ============================ for gantt chart part ===============================
+// the data used to store the gantt
+function genGanttData(myarray){
+	let header = ['4-9','4-10','5-1','6-1','6-2','7-1','7-2','7-3','7-4','7-5','7-6','7-7','7-8','7-9','7-10','8-1','8-2','8-3','8-4','8-5','9-1','9-2','9-3','9-4','9-5','9-6','9-7','10-1','10-2','10-3','10-4','10-5','11-1','11-2'];
+
+	let desc = ['申請同意備案', '辦理電網併聯初步協商','出流計畫審查','提出申請書','海岸管理審查' ,'確認免辦環境影響評估作業', '審查排水計畫書', '審查農業用地變更為非農業用地', '開發計畫-地方目的事業主管機關初審', '開發計畫-會辦府內相關單位', '開發計畫-區委會受理及現勘', '開發計畫-區委會小組及大會審議及核發開發許可', '審查環境影響評估書件', '審查水土保持規劃書', '使用分區及使用地變更異動登記', '地方目的事業主管機關初審', '回復審查意見', '會辦地方政府內相關單位', '辦理現勘', '核發容許使用核准函', '提出施工許可申請', '審查施工許可計畫書', '回復審查意見', '辦理複審', '業者檢送計畫書定稿', '核發施工許可同意函', '辦理電網併聯細部協商', '受理路權申請(國有地/公路總局)', '辦理現場勘查', '核發路權許可(國有地/公路總局)', '受理路權申請(縣市/鄉鎮)', '核發路權許可(縣市/鄉鎮)', '光電主體工程施作', '升壓站及線路工程施作'];
+
+	let colorlist = ["ganttRed","ganttGreen","ganttOrange","ganttBlue", "ganttPurple"];
+
+	var result = [];
+	var flag = false;
+	myarray[1].forEach(function (item, index) {
+		let color_index = Math.floor(Math.random() * 5);
+		if(item != "" && myarray[2][index] != "" ){
+			// push gantt graph element
+			result.push({
+		  		name: header[index],
+		  		desc: desc[index],
+		  		values:[{
+		  			label: header[index],
+		  			from: item,
+		  			to: myarray[2][index],
+		  			customClass: colorlist[color_index]
+		  		}]
+		  	});
+
+		  	flag = true;
+		} else{
+			result.push({
+		  		name: header[index],
+		  		desc: desc[index]		  		
+		  	});
+		} 
+	});
+	return [result, flag]
+}
+
+function genGantt(myData){
+	$(".gantt").gantt({
+	  source: myData,
+	  // how many items per page
+	  itemsPerPage: 13,
+	  // localisation
+	  dow: ["S", "M", "T", "W", "T", "F", "S"],
+	  months: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+
+	  // navigation type
+	  // or 'scroll'
+	  navigate: "scroll",
+
+	  // scale parameters
+	  scale: "weeks",
+	  minScale: "weeks",
+	  maxScale: "weeks"
+	});
+}
+
+var data = genGanttData(timeline_list);
+if(data[1]) genGantt(data[0]);
+
+function regenGantt(timeline_index){
+	let cur_date = new Date($("#ganttform1").val());
+	let other_date = new Date($("#ganttform2").val());
+	timeline_list[1][timeline_index] = $("#ganttform1").val();
+	timeline_list[2][timeline_index] = $("#ganttform2").val();
+	// logical
+	if(other_date<cur_date){
+		// non logical
+		alert("提醒: 完成時間應大於等於起始時間");
+	}
+	data = genGanttData(timeline_list);
+	if(data[1]){
+		genGantt(data[0]);
+	}
+}
+
+// check if its a date or not
+function isValidDate(d) {
+  return d instanceof Date && !isNaN(d);
+}
+
+// set the week element
+function setweek(index){
+	let new_text = $("#ganttform0").val();
+	timeline_list[0][index] = new_text; 
+}
+
+var timeline_option = document.getElementById("sel1");
+timeline_option.addEventListener('change', function(){
+	let option = $('option:selected', this).attr('mytag');
+	option = parseInt(option);
+	let html_str = '<label for="ganttform0">期間</label><input type="text" id="ganttform0" onchange="setweek('+option+')" class="form-control" value="'+timeline_list[0][option]+'"/><br>';
+	html_str += '<label for="ganttform1">起始時間</label><input type="text" id="ganttform1" class="form-control" value="'+timeline_list[1][option]+'" onchange="regenGantt('+option+')"/><br>';
+	html_str += '<label for="ganttform2">完成時間</label><input type="text" id="ganttform2" class="form-control" value="'+timeline_list[2][option]+'" onchange="regenGantt('+option+')"/>';
+	$("#gantt_form").html(html_str);
+	date_init('#ganttform1');
+	date_init('#ganttform2');
+});
+
+
+function sendclicked(){
+    let latest_phase = 0;
+    let stage = 0;
+    timeline_list[1][0] = apply_date;
+    for(var i = 1; i < timeline_list[0].length+1 ; i++){
+        arr = timeline_list[2][timeline_list[0].length - i];
+        if(arr != ""){
+            latest_phase = timeline_list[0].length - i
+            break;
+        }
+    }
+    // calculate which stage it is
+    switch (true) {
+        case (latest_phase < 2):
+            stage = 4;
+            break;
+        case (2 <= latest_phase && latest_phase < 3):
+            stage = 5;
+            break;
+        case (3 <= latest_phase && latest_phase < 5):
+            stage = 6;
+            break;            
+            
+        case (5 <= latest_phase && latest_phase < 15):
+            stage = 7;
+            break;
+        case (15 <= latest_phase && latest_phase < 20):
+            stage = 8;
+            break;
+        case (20 <= latest_phase && latest_phase < 27):
+            stage = 9;
+            break;
+        case (27 <= latest_phase && latest_phase < 30):
+            stage = 10;
+            break;
+        case (30 <= latest_phase && latest_phase < 33):
+            stage = 11;
+            break;
+    }    
+    // calculate delay or not
+    function getWeekNumber(d) {
+        d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+        d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay()||7));
+        var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
+        var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
+        return [d.getUTCFullYear(), weekNo];
+    }
+    var week_num = getWeekNumber(new Date());
+    week_num = 52 - week_num[1];
+    var period_sum = 0;
+    var default_period = [1,2,8,4,8,4,6,6,2,2,2,4,4,4,6,1,2,2,1,1,1,1,1,1,1,2,2,2,2,4,0,1,16,24];
+    for (var i = 0; i < timeline_list[0].length; i++){
+        if(timeline_list[0][i] != ""){
+            console.log("timeline_list[0]:", timeline_list[0][i])
+            default_period[i] = timeline_list[0][i].replace("週","")
+        }
+    }
+    for (var i = latest_phase+1; i < default_period.length; i++){
+        period_sum += default_period[i]
+    }
+    var finish = (week_num - period_sum > 0) ? 1 : 0; 
+	let result = [base_list[0]];
+	// process the keypoint form
+	let str_array = ['','','','']
+	$(".key_form .form-control").each(function(index) {
+		str_array[index%4] += ($(this).val()+"%");
+	});
+
+	str_array[0] = str_array[0].slice(0, -1);
+	str_array[1] = str_array[1].slice(0, -1);
+	str_array[2] = str_array[2].slice(0, -1);
+	str_array[3] = str_array[3].slice(0, -1);
+
+
+	if(str_array[0].split("%").length != 5){
+		let remain = 5 - str_array[0].split("%").length;
+		for(var i = 0; i < remain; i++){
+			str_array[0] += "%";
+			str_array[1] += "%";
+			str_array[2] += "%";
+			str_array[3] += "%";
+
+		}
+	}
+
+    
+    
+	let str_array2 = ['','','']
+	// process the timeline form
+	for(var i = 0; i < timeline_list[0].length; i++){
+		str_array2[0] += (timeline_list[0][i]+"%");
+		str_array2[1] += (timeline_list[1][i]+"%");
+		str_array2[2] += (timeline_list[2][i]+"%");
+	}
+
+	str_array2[0] = str_array2[0].slice(0, -1);
+	str_array2[1] = str_array2[1].slice(0, -1);
+	str_array2[2] = str_array2[2].slice(0, -1);
+    console.log("result",result);
+	result = result.concat(str_array);
+    var review = $('#review').val();
+    var review2 = $('#review2').val();
+    console.log("result",result);
+    
+    result.push(review);   
+    console.log("result",result);
+    
+	result.push(counter);
+	result = result.concat(str_array2);
+    result.push(stage);
+    //result.push(finish);
+    result.push(review2);     
+
+	// the result list is the final result
+	request = {"result" : result};
+	ajaxSend(request, "control_save", "#redirect");
+
+}
+</script>

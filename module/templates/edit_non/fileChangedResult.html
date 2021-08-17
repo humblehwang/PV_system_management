@@ -1,0 +1,373 @@
+
+<div class="card-header" id="headingOne">
+	<h2 style="font-family: 'Microsoft JhengHei'; ">案件基本資料</h2>
+	<h2 class="mb-0"> 
+		<button class="btn btn-info" type="button" data-toggle="modal" data-target="#Modal1">點擊顯示內容</button>
+	</h2>
+</div>
+<br>
+<div class="card-header" id="headingtwo">
+	{% if diff_list2|length < 1 %}
+    <h2 style="font-family: 'Microsoft JhengHei'; ">此備案無有效的電訪紀錄</h2> 
+	{% else %}
+	    <h2 style="font-family: 'Microsoft JhengHei'; ">此備案變動之電訪記錄</h2> 
+      	<div class="row">
+			<div class="col-sm">
+				<button class="btn btn-info" type="button" data-toggle="modal" data-target="#Modal2"> 點擊顯示內容</button>
+			</div>
+	</div>
+	{% endif %}
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">備案基本資料</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+
+<div class="alert alert-success" role="alert">
+  此案件有欄位更動，籌設許可名稱{{diff_list[1]}}
+</div>
+<div class="row">
+	<div class="col-sm">
+		<div>
+			<label class="font-weight-bold" for="ele14">籌設許可名稱:</label>
+			<p id="ele14">{{diff_list[1]}}</p>
+		</div>
+		<div>
+			{% if diff_list[0] is mapping%}
+				<label class="font-weight-bold" for="ele0">發文日期: <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="ele0">From: {{diff_list[0]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list[0]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="ele0">發文日期:</label>
+				<p id="ele0">{{diff_list[0]}}</p>
+			{% endif %}
+		</div>
+		<div>
+			{% if diff_list[2] is mapping%}
+				<label class="font-weight-bold" for="ele1">發電廠部分廠址: <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="ele1">From: {{diff_list[2]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list[2]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="ele1">發電廠部分廠址:</label>
+				<p id="ele1">{{diff_list[2]}}</p>
+			{% endif %}
+		</div>
+		<div>
+			{% if diff_list[3] is mapping%}
+				<label class="font-weight-bold" for="ele2">申請籌設容量
+(kW): <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="ele2">From: {{diff_list[3]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list[3]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="ele2">申請籌設容量
+(kW):</label>
+				<p id="ele2">{{diff_list[3]}}</p>
+			{% endif %}
+		</div>
+		<div>
+			{% if diff_list[4] is mapping%}
+				<label class="font-weight-bold" for="ele3">籌備處: <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="ele3">From: {{diff_list[4]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list[4]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="ele3">籌備處:</label>
+				<p id="ele3">{{diff_list[4]}}</p>
+			{% endif %}
+		</div>
+		<div>
+			{% if diff_list[5] is mapping%}
+				<label class="font-weight-bold" for="ele4">取得電業籌設容量(kW): <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="ele4">From: {{diff_list[5]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list[5]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="ele4">取得電業籌設容量(kW):</label>
+				<p id="ele4">{{diff_list[5]}}</p>
+			{% endif %}
+		</div>
+		<div>
+			{% if diff_list[6] is mapping%}
+				<label class="font-weight-bold" for="ele5">縣市: <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="ele5">From: {{diff_list[6]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list[6]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="ele5">縣市:</label>
+				<p id="ele5">{{diff_list[6]}}</p>
+			{% endif %}
+		</div>
+		<div>
+			{% if diff_list[7] is mapping%}
+				<label class="font-weight-bold" for="ele6">土地狀態: <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="ele6">From: {{diff_list[7]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list[7]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="ele6">土地狀態:</label>
+				<p id="ele6">{{diff_list[7]}}</p>
+			{% endif %}
+		</div>	
+	</div>
+	<div class="col-sm">
+		<div>
+			{% if diff_list[8] is mapping%}
+				<label class="font-weight-bold" for="ele7">用地變更分類: <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="ele7">From: {{diff_list[8]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list[8]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="ele7">用地變更分類:</label>
+				<p id="ele7">{{diff_list[8]}}</p>
+			{% endif %}
+		</div>
+		<div>
+			{% if diff_list[9] is mapping%}
+				<label class="font-weight-bold" for="ele8">升壓站容許或變更: <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="ele8">From: {{diff_list[9]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list[9]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="ele8">升壓站容許或變更:</label>
+				<p id="ele8">{{diff_list[9]}}</p>
+			{% endif %}
+		</div>
+		<div>
+			{% if diff_list[10] is mapping%}
+				<label class="font-weight-bold" for="ele9">併聯點: <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="ele9">From: {{diff_list[10]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list[10]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="ele9">併聯點:</label>
+				<p id="ele9">{{diff_list[10]}}</p>
+			{% endif %}
+		</div>
+		<div>
+			{% if diff_list[11] is mapping%}
+				<label class="font-weight-bold" for="ele10">備註 : <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="ele10">From: {{diff_list[11]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list[11]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="ele10">備註 :</label>
+				<p id="ele10">{{diff_list[11]}}</p>
+			{% endif %}
+		</div>
+		<div>
+			{% if diff_list[12] is mapping%}
+				<label class="font-weight-bold" for="ele11">聯絡人: <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="ele11">From: {{diff_list[12]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list[12]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="ele11">聯絡人:</label>
+				<p id="ele11">{{diff_list[12]}}</p>
+			{% endif %}
+		</div>
+		<div>
+			{% if diff_list[13] is mapping%}
+				<label class="font-weight-bold" for="ele12">電話: <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="ele12">From: {{diff_list[13]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list[13]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="ele12">電話:</label>
+				<p id="ele12">{{diff_list[13]}}</p>
+			{% endif %}
+		</div>
+		<div>
+			{% if diff_list[14] is mapping%}
+				<label class="font-weight-bold" for="ele13">完成併聯審查日期: <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="ele13">From: {{diff_list[14]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list[14]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="ele13">完成併聯審查日期:</label>
+				<p id="ele13">{{diff_list[14]}}</p>
+			{% endif %}
+		</div>
+		<div>
+			{% if diff_list[15] is mapping%}
+				<label class="font-weight-bold" for="ele15">申請籌備創設日期: <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="ele15">From: {{diff_list[15]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list[15]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="ele15">申請籌備創設日期:</label>
+				<p id="ele15">{{diff_list[15]}}</p>
+			{% endif %}
+		</div>
+		<div>
+			{% if diff_list[16] is mapping%}
+				<label class="font-weight-bold" for="ele16">取得籌備創設日期: <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="ele16">From: {{diff_list[16]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list[16]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="ele16">取得籌備創設日期:</label>
+				<p id="ele16">{{diff_list[16]}}</p>
+			{% endif %}
+		</div>
+		<div>
+			{% if diff_list[17] is mapping%}
+				<label class="font-weight-bold" for="ele17">取得土地容許或完成用地變更日期: <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="ele17">From: {{diff_list[17]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list[17]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="ele17">取得土地容許或完成用地變更日期:</label>
+				<p id="ele17">{{diff_list[17]}}</p>
+			{% endif %}
+		</div>
+        
+		<div>
+			{% if diff_list[18] is mapping%}
+				<label class="font-weight-bold" for="ele18">申請施工許可日期: <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="ele18">From: {{diff_list[18]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list[18]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="ele18">申請施工許可日期:</label>
+				<p id="ele18">{{diff_list[18]}}</p>
+			{% endif %}
+		</div>
+
+        
+		<div>
+			{% if diff_list[19] is mapping%}
+				<label class="font-weight-bold" for="ele19">取得施工許可日期: <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="ele19">From: {{diff_list[19]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list[19]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="ele19">取得施工許可日期:</label>
+				<p id="ele19">{{diff_list[19]}}</p>
+			{% endif %}
+		</div>
+
+ 
+		<div>
+			{% if diff_list[20] is mapping%}
+				<label class="font-weight-bold" for="ele20">申請人或機構: <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="ele20">From: {{diff_list[20]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list[20]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="ele20">申請人或機構:</label>
+				<p id="ele20">{{diff_list[20]}}</p>
+			{% endif %}
+		</div>             
+        
+        
+		<div>
+			{% if diff_list[21] is mapping%}
+				<label class="font-weight-bold" for="ele21">設置位置: <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="ele21">From: {{diff_list[21]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list[21]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="ele21">設置位置:</label>
+				<p id="ele21">{{diff_list[21]}}</p>
+			{% endif %}
+		</div>             
+        
+        
+		<div>
+			{% if diff_list[22] is mapping%}
+				<label class="font-weight-bold" for="ele22">施工許可取得容量: <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="ele22">From: {{diff_list[22]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list[22]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="ele22">施工許可取得容量:</label>
+				<p id="ele22">{{diff_list[22]}}</p>
+			{% endif %}
+		</div>             
+        
+        
+		<div>
+			{% if diff_list[23] is mapping%}
+				<label class="font-weight-bold" for="ele23">案件現況: <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="ele23">From: {{diff_list[23]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list[23]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="ele23">案件現況:</label>
+				<p id="ele23">{{diff_list[23]}}</p>
+			{% endif %}
+		</div>             
+        
+        
+		<div>
+			{% if diff_list[24] is mapping%}
+				<label class="font-weight-bold" for="ele24">階段: <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="ele24">From: {{diff_list[24]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list[24]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="ele24">階段:</label>
+				<p id="ele24">{{diff_list[24]}}</p>
+			{% endif %}
+		</div>        
+
+        
+	</div>
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">電訪記錄</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	
+
+<div class="alert alert-success" role="alert">
+  此電訪記錄有欄位更動
+</div>
+<div class="row">
+	<div class="col-sm">
+		<div>
+			{% if diff_list2[0] is mapping%}
+				<label class="font-weight-bold" for="tele0">籌設許可名稱: <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="tele0">From: {{diff_list2[0]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list2[0]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="tele0">籌設許可名稱:</label>
+				<p id="tele0">{{diff_list2[0]}}</p>
+			{% endif %}
+		</div>
+		<div>
+			{% if diff_list2[1] is mapping%}
+				<label class="font-weight-bold" for="tele1">電訪時間: <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="tele1">From: {{diff_list2[1]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list2[1]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="tele1">電訪時間:</label>
+				<p id="tele1">{{diff_list2[1]}}</p>
+			{% endif %}
+		</div>
+		<div>
+			{% if diff_list2[2] is mapping%}
+				<label class="font-weight-bold" for="tele2">施工狀況: <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="tele2">From: {{diff_list2[2]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list2[2]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="tele2">施工狀況:</label>
+				<p id="tele2">{{diff_list2[2]}}</p>
+			{% endif %}
+		</div>
+	</div>
+	<div class="col-sm">
+		<div>
+			{% if diff_list2[3] is mapping%}
+				<label class="font-weight-bold" for="tele3">預計完工日: <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="tele3">From: {{diff_list2[3]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list2[3]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="tele3">預計完工日:</label>
+				<p id="tele3">{{diff_list2[3]}}</p>
+			{% endif %}
+		</div>
+		<div>
+			{% if diff_list2[4] is mapping%}
+				<label class="font-weight-bold" for="tele4">問題分類: <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="tele4">From: {{diff_list2[4]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list2[4]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="tele4">問題分類: </label>
+				<p id="tele4">{{diff_list2[4]}}</p>
+			{% endif %}
+		</div>
+		<div>
+			{% if diff_list2[5] is mapping%}
+				<label class="font-weight-bold" for="tele5">問題描述: <span class="badge badge-danger">change</span></label>
+				<p class="text-danger" id="tele5">From: {{diff_list2[5]["old"]}}</p><p class="text-success">To: &nbsp&nbsp&nbsp&nbsp  {{diff_list2[5]["new"]}}</p>
+			{% else %}
+				<label class="font-weight-bold" for="tele5">問題描述:</label>
+				<p id="tele5">{{diff_list2[5]}}</p>
+			{% endif %}
+		</div>
+
+	</div>
+</div>
+
+
+      </div>
+    </div>
+  </div>
+</div>

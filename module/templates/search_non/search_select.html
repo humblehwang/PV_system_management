@@ -1,0 +1,43 @@
+<nav>
+    <h3>根據搜尋條件找到的結果有{{re_num}}筆，共{{total_app_cap}}kW</h3>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">符合條件的案件  <span class="badge badge-primary">{{re_num}}件</span></a>
+  </div>
+</nav>
+
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+    <!-- content -->
+    <div class="list-group overflow-auto" style="max-height: 70%;">
+      {% for data in data_list %}
+
+      <a class="list-group-item list-group-item-action" onclick="show_case('{{data[0]}}')">
+        <div class="row">
+          <div class="col-sm">
+            <span class="badge badge-pill badge-primary"style="background-color: #4F9D9D;">籌設許可名稱</span>{{data[0]}}
+          </div>
+          <div class="col-sm">
+            <span class="badge badge-pill badge-primary"style="background-color: #7373B9;">聯絡人</span>{{data[1]}}
+          </div>
+
+          <div class="col-sm">
+            
+          </div>
+        </div>    
+      </a>
+      {% endfor %}
+    </div>
+    <!-- end content -->
+  </div>
+</div>
+
+
+<script type="text/javascript">
+    var sing_case = document.getElementById("select_host");
+    function show_case(set_num){
+      
+        request = {"option": set_num};
+        console.log(request);
+      ajaxNewWindow(request, "searchResult");
+    }
+</script>

@@ -1,0 +1,280 @@
+{% if rec_bool == 1 %}
+
+  <div class="card-header" id="headingOne">
+    <h2 style="font-family: 'Microsoft JhengHei'; ">案件基本資料</h2> 
+      <h2 class="mb-0">
+        <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      點擊延展內容
+    </button>
+    <button type="button" class="btn btn-success" id="sendRecord">送出資料</button>
+      </h2>
+    </div>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body">
+  <div class="row">
+	<div class="col-sm">
+		<div class="form-group">
+			<label for="ele0">備案編號 <span class="badge badge-danger">不可編輯</span></label>
+			<input class="form-control" type="text" id="ele0" value="{{rec_detail[14]}}" disabled>
+			<small id="ele0" class="form-text text-muted">這欄位無法編輯</small>
+		</div>
+		<div class="form-group">
+			<label for="rec_id">申請人或機構</label>
+			<input class="form-control" type="text" id="ele1" value="{{rec_detail[0]}}">
+		</div>
+		<div class="form-group">
+			<label for="rec_id">案件類型</label>
+			<input class="form-control" type="text" id="ele2" value="{{rec_detail[1]}}">
+		</div>
+		<div class="form-group">
+			<label for="rec_id">同意備案核准容量(kW)</label>
+			<input class="form-control" type="text" id="ele3" value="{{rec_detail[2]}}">
+		</div>
+		<div class="form-group">
+			<label for="rec_id">設置位置</label>
+			<input class="form-control" type="text" id="ele4" value="{{rec_detail[3]}}">
+		</div>
+		<div class="form-group">
+			<label for="rec_id">縣市</label>
+			<input class="form-control" type="text" id="ele5" value="{{rec_detail[4]}}">
+		</div>
+		<div class="form-group">
+			<label for="rec_id">設置場址(地址)</label>
+			<input class="form-control" type="text" id="ele6" value="{{rec_detail[5]}}">
+		</div>
+		<div class="form-group">
+			<label for="rec_id">設置場址(地號)</label>
+			<textarea class="form-control" id="ele7" rows="7">{{rec_detail[6]}}</textarea>
+		</div>
+	</div>
+	<div class="col-sm">
+		<div class="form-group">
+			<label for="rec_id">專案類型</label>
+			<input class="form-control" type="text" id="ele8" value="{{rec_detail[7]}}">
+		</div>
+		<div class="form-group">
+			<label for="rec_id">售電方式</label>
+			<input class="form-control" type="text" id="ele9" value="{{rec_detail[8]}}">
+		</div>
+		<div class="form-group">
+			<label for="rec_id">同意備案申請日期</label>
+			<input class="form-control" type="text" id="ele10" value="{{rec_detail[9]}}">
+		</div>
+		<div class="form-group">
+			<label for="rec_id">同意備案核准日期</label>
+			<input class="form-control" type="text" id="ele11" value="{{rec_detail[10]}}">
+		</div>
+		<div class="form-group">
+			<label for="rec_id">案件狀態</label>
+			<input class="form-control" type="text" id="ele12" value="{{rec_detail[11]}}">
+		</div>
+		<div class="form-group">
+			<label for="rec_id">聯絡人姓名</label>
+			<input class="form-control" type="text" id="ele13" value="{{rec_detail[12]}}">
+		</div>
+		<div class="form-group">
+			<label for="rec_id">聯絡人電話</label>
+			<input class="form-control" type="text" id="ele14" value="{{rec_detail[13]}}">
+		</div>
+		<div class="form-group">
+			<label for="rec_id">簽約日期</label>
+			<input class="form-control" type="text" id="ele15" value="{{rec_detail[15]}}">
+		</div>
+		<div class="form-group">
+			<label for="rec_id">完工併聯日期</label>
+			<input class="form-control" type="text" id="ele16" value="{{rec_detail[16]}}">
+		</div>
+		<div class="form-group">
+			<label for="rec_id">完工併聯容量(kW)</label>
+			<input class="form-control" type="text" id="ele17" value="{{rec_detail[17]}}">
+		</div>
+	</div>
+</div>
+
+    </div>
+  </div>
+<br>
+<div class="card-header" id="headingtwo">
+    <h2 style="font-family: 'Microsoft JhengHei'; ">此備案最新電訪記錄</h2> 
+      <h2 class="mb-0">
+        <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+      點擊延展內容
+    </button>
+      </h2>
+    </div>
+  <div class="collapse" id="collapseExample2">
+    <div class="card card-body">
+
+      <div class="row">
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="tele0">備案編號 <span class="badge badge-danger">不可編輯</span></label>
+            <input class="form-control" type="text" id="tele0" value="{{tel_detail[0]}}" disabled>
+          </div>
+          <div class="form-group">
+            <label for="tele1">電訪時間</label>
+            <input class="form-control" type="text" id="tele1" value="{{tel_detail[1]}}" >
+          </div>
+          <div class="form-group">
+            <label for="tele2">施工狀況</label>
+            <input class="form-control" type="text" id="tele2" value="{{tel_detail[2]}}" >
+          </div>
+          <div class="form-group">
+            <label for="tele6">此紀錄上傳時間 <span class="badge badge-danger">不可編輯</span></label>
+            <input class="form-control" type="text" id="tele6" value="{{tel_detail[6]}}" disabled>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="tele3">預計完工日</label>
+            <input class="form-control" type="text" id="tele3" value="{{tel_detail[3]}}" >
+          </div>
+          <div class="form-group">
+            <label for="tele4">問題分類</label>
+            <input class="form-control" type="text" id="tele4" value="{{tel_detail[4]}}" >
+          </div>
+          <div class="form-group">
+            <label for="tele5">問題描述</label>
+            <input class="form-control" type="text" id="tele5" value="{{tel_detail[5]}}" >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<br>
+<!--
+<div class="card-header" id="headingthree">
+    <h2 style="font-family: 'Microsoft JhengHei'; ">管控表記錄</h2> 
+      <h2 class="mb-0">
+        <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
+      點擊延展內容
+    </button>
+      </h2>
+</div>
+  <div class="collapse" id="collapseExample3">
+    <div class="card card-body">
+      <div class="row">
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="ctbl0">備案編號 <span class="badge badge-danger">不可編輯</span></label>
+            <input class="form-control" type="text" id="ctbl0" value="{{tel_detail[0]}}" disabled>
+          </div>
+          <div class="form-group">
+            <label for="ctbl">關鍵事項</label>
+            <input class="form-control" type="text" id="ctbl1" value="{{tel_detail[1]}}" >
+          </div>
+          <div class="form-group">
+            <label for="ctbl02">主責單位</label>
+            <input class="form-control" type="text" id="ctbl2" value="{{tel_detail[2]}}" >
+          </div>
+          <div class="form-group">
+            <label for="tele3">辦理情形</label>
+            <input class="form-control" type="text" id="ctbl3" value="{{tel_detail[3]}}" >
+          </div>
+          <div class="form-group">
+            <label for="ctbl4">預計完工日</label>
+            <input class="form-control" type="text" id="ctbl4" value="{{tel_detail[4]}}" >
+          </div>
+
+        </div>
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="ctbl5">選擇查核點</label>
+            <select class="form-control" id="sel1">
+                <option>4-9</option>
+                <option>4-10</option>
+                <option>5-1</option>
+                <option>5-2</option>
+                <option>5-3</option>
+                <option>5-4</option>
+                <option>5-5</option>
+                <option>5-6</option>
+                <option>5-7</option>
+                <option>5-8</option>
+                <option>5-9</option>
+                <option>5-10</option>
+                <option>6-1</option>
+                <option>6-2</option>
+                <option>6-3</option>
+                <option>6-4</option>
+                <option>6-5</option>
+                <option>7-1</option>
+                <option>7-2</option>
+                <option>7-3</option>
+                <option>7-4</option>
+                <option>7-5</option>
+                <option>7-6</option>
+                <option>7-7</option>
+                <option>8-1</option>
+                <option>8-2</option>
+                <option>8-3</option>
+                <option>8-4</option>
+                <option>8-5</option>
+                <option>9-1</option>
+                <option>9-2</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="ctbl6">期間</label>
+            <input class="form-control" type="text" id="ctbl6" value="{{tel_detail[5]}}" >
+          </div>
+          <div class="form-group">
+            <label for="tctbl7">起始時間</label>
+            <input class="form-control" type="text" id="ctbl7" value="{{tel_detail[7]}}" >
+          </div>
+          <div class="form-group">
+            <label for="tctbl8">完成時間</label>
+            <input class="form-control" type="text" id="ctbl8" value="{{tel_detail[8]}}" >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>-->
+
+  <script type="text/javascript">$('.collapse').collapse('hide')</script>
+{%　endif %}
+
+<script type="text/javascript">
+	  // btn listener
+date_init('#ele10');
+date_init('#ele11');
+date_init('#ele15');
+date_init('#ele16');
+date_init('#tele1');
+date_init('#tele3');
+date_init('#ctbl4');
+date_init('#ctbl7');
+date_init('#ctbl8');
+
+  var db_btn = document.getElementById("sendRecord");
+  db_btn.addEventListener('click',function(){
+    var result = [];
+    var result2 = [];
+    var data;
+    // iteraterate over all the nput field to get value
+    for (var i = 1; i <= 17; i++) {
+    	// text field
+    	if(i == 7){
+    		data = $("#ele"+i).text();
+    	}else{
+    		data = $("#ele"+i).val();
+    	}
+    	result.push(data)
+    }
+
+    for (var i = 0; i <= 6; i++){
+    	data = $("#tele"+i).val();
+    	result2.push(data)
+    }
+
+    // reorder the pro num for basic data
+    result.splice(14, 0, $("#ele0").val());
+	var option = $("#select_case option:selected").attr('mytag');
+
+    //$("#host_content").html(waiting_con);
+    request = {"result" : result, "result2" : result2, "option": option}
+    ajaxSend(request, "storeSing", "#host_content");
+  })
+
+</script>

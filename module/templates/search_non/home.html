@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<script src="https://cdn.jsdelivr.net/npm/firebase@6.1.0/firebase.js"></script>
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script>
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-analytics.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-firestore.js"></script>
+
+
+<script>
+var firebaseConfig = {
+    apiKey: "AIzaSyAYm3PUeQpMR62EQzBCNoX4SJsl6jPRZcM",
+    authDomain: "itriwebsystem.firebaseapp.com",
+    databaseURL: "https://itriwebsystem.firebaseio.com",
+    projectId: "itriwebsystem",
+    storageBucket: "itriwebsystem.appspot.com",
+    messagingSenderId: "694056489044",
+    appId: "1:694056489044:web:295ae1c91d9603df385dc1",
+    measurementId: "G-YMGMG1ENZB"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+</script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/user/checklogin.js') }}?ver=3"></script>
+
+
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/bootstrap.css') }}">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/all.min.css') }}">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/datepicker.css') }}">
+<style type="text/css">
+.form-check-input-reverse{
+ margin-left: 10px;
+}
+</style>
+{% block body %}
+
+<div class="wrapper d-flex align-items-stretch">
+<nav id="sidebar"style="background-color:#091B2A;">
+		<div class="custom-menu">
+			<button type="button" id="sidebarCollapse" class="btn btn-dark">
+	          <i class="fas fa-bars"></i>
+	          <span class="sr-only">Toggle Menu</span>
+	        </button>
+        </div>
+		<div class="p-4 pt-5">
+		  	<h4><a href="/search" class="logo"><img src="/static/img/logo1.png" width="200" height="100" class="d-inline-block align-top" alt=""></a></h4>
+            <h5  style="color:#B3D9D9"class="font-weight-bolder">太陽光電達標管考資訊平台</h5>
+		  	<br>
+	        <ul class="list-unstyled components mb-5">
+
+                
+                
+<li>
+              <a href="#pageSubmenu_non" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle font-weight-bolder"><img src="/static/img/document.png" width="30" height="30" class="d-inline-block align-top" alt="">開發中案件</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu_non">
+                <li>
+                    <a href="/uploadNon" class="font-weight-bolder">上傳新案件</a>
+                </li>
+
+		                <li>
+		                	<a href="/editNon" class="font-weight-bolder">上傳編輯檔案</a>
+		                </li>
+
+                <li>
+                    <a href="/searchNon" class="font-weight-bolder">查詢和編輯案件</a>
+                </li>
+              </ul>
+	          </li> 
+<li>
+              <a href="#pageSubmenu_other_non" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle font-weight-bolder"><img src="/static/img/globe-xxl.png" width="30" height="30" class="d-inline-block align-top" alt="">開發中案件其他功能</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu_other_non">
+		                <li>
+		                	<a href="#" class="font-weight-bolder">統計圖表</a>
+		                </li>
+
+		                <li>
+		                	<a href="#" class="font-weight-bolder">檔案格式修正</a>
+		                </li>
+		                <li>
+		                	<a href="/otherNon" class="font-weight-bolder">開發中案件分案</a>
+		                </li>
+              </ul>
+	          </li> 
+                
+<li>
+              <a href="#pageSubmenu_apply" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle font-weight-bolder"><img src="/static/img/solar-panel-xxl.png" width="30" height="30" class="d-inline-block align-top" alt="">同意備案</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu_apply">
+                <li>
+                    <a href="/upload" class="font-weight-bolder">上傳新案件</a>
+                </li>
+
+		                <li>
+		                	<a href="/edit" class="font-weight-bolder">上傳編輯檔案</a>
+		                </li>
+
+                <li>
+                    <a href="/search" class="font-weight-bolder">查詢和編輯案件</a>
+                </li>
+                <li>
+                    <a href="/control" class="font-weight-bolder">管控表編輯</a>
+                </li>
+                                  <li>
+                    <a href="/upload/tel" class="font-weight-bolder">電訪記錄上傳</a>
+                </li>
+                                  <li>
+                    <a href="/upload/tel_power" class="font-weight-bolder">台電電訪記錄上傳</a>
+                </li>
+                                    <li>
+                    <a href="/search_tel" class="font-weight-bolder">電訪記錄搜尋</a>
+                </li>
+              </ul>
+	          </li>                
+                
+                
+                
+<li>
+              <a href="#pageSubmenu_control" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle font-weight-bolder"><img src="/static/img/globe-xxl.png" width="30" height="30" class="d-inline-block align-top" alt="">同意備案其他功能</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu_control">
+            <li>
+                    <a href="/other" class="font-weight-bolder">管控案件上傳</a>
+                </li>
+		                <li>
+		                	<a href="/other/complete" class="font-weight-bolder">備案資料補齊</a>
+		                </li> 
+		                <li>
+		                	<a href="/other/table" class="font-weight-bolder">統計圖表</a>
+		                </li>
+
+ 
+		                <li>
+		                	<a href="/other/format" class="font-weight-bolder">檔案格式修正</a>
+		                </li>
+		                <li>
+		                	<a href="/other/assign" class="font-weight-bolder">同意備案分案</a>
+		                </li>
+                 		  <li>
+		                	<a href="/other/delete" class="font-weight-bolder">刪除同意備案編號</a>
+		                </li>
+              </ul>
+	          </li> 
+
+
+                
+<li>                
+                
+                
+                
+            
+            <li>
+              <a href="#pageSubmenu_user" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle font-weight-bolder"><img src="/static/img/user.png" width="30" height="30" class="d-inline-block align-top" alt="">使用者</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu_user">
+                <li>
+                    <a href="/reset" class="font-weight-bolder">更改密碼</a>
+                </li>
+ 
+
+              </ul>
+                <a id="signout_btn" href="/search" class="logout"><img src="/static/img/logout.png" width="30" height="30" class="d-inline-block align-top" alt="">登出</a>
+	         </li>
+            
+            </ul>
+            
+	      </div>
+    	</nav>
+
+
+
+<div class="container">
+	<br><br>
+	<br>
+	<form action="/searchNon/DowbFile1" method="POST" id="dn_btn1"></form>
+    <div class="card-header" style="background-color:#F3F3FA;" id="headingOne">
+    <h2 style="font-family: 'Microsoft JhengHei'; ">開發中案件搜尋</h2>	
+      <h2 class="mb-0">
+	      <button id='searchCondiction_btn' class="btn btn-raised btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+		    搜尋條件(點擊打開)
+		  </button>
+		  <button  class="btn btn-raised btn-outline-warning"  type="button" id="sendsearch">
+		    確認搜尋
+		  </button>
+		  <p id="dl_form" style="display: inline;"></p>
+      </h2>
+    </div>
+ <font color="#005AB5">1. 關鍵字搜尋可以複選，請用"</font>   
+ <font color="red" size=5>   ;</font>  
+  <font color="#005AB5">"將關鍵字隔開，例如: 已簽約;失效</font>   <br>
+  <font color="#005AB5">2. 關鍵字搜尋可以排除，請在關鍵字前加上"</font>   
+ <font color="red" size=5>  !=</font>  
+  <font color="#005AB5">"例如: !=已簽約;失效。</font> <br>   
+    <font color="#005AB5">搜尋結果會排除已簽約及失效的備案紀錄。</font>         
+    
+     <div class="collapse" id="collapseExample">
+	  <div class="card card-body">
+			<div class="form-row">
+				<div class="form-group col-md-4">
+				    <label for="inputsetnum">籌設許可名稱</label>
+					<input type="text" class="form-control " id="inputsetnum" placeholder="輸入籌設許可名稱">
+				</div>
+				<div class="form-group col-md-4">
+				    <label for="inputloc">發電廠部分廠址</label>
+					<input type="text" class="form-control" id="inputloc" placeholder="輸入發電廠部分廠址關鍵字">
+				</div>
+                
+				<div class="form-group col-md-4">
+				    <label for="inputdep">籌備處</label>
+					<input type="text" class="form-control" id="inputdep" placeholder="輸入籌備處關鍵字">
+				</div>
+                
+                
+				<div class="form-group col-md-4">
+				    <label for="inputnote">備註</label>
+					<input type="text" class="form-control" id="inputnote" placeholder="輸入備註關鍵字">
+				</div>
+
+				<div class="form-group col-md-4">
+				    <label for="inputcontact">聯絡人</label>
+					<input type="text" class="form-control" id="inputcontact" placeholder="輸入聯絡人">
+				</div>
+  				<div class="form-group col-md-4">
+				    <label for="inputcompany">申請人或機構</label>
+					<input type="text" class="form-control" id="inputcompany" placeholder="申請人或機構">
+				</div> 
+                  				<div class="form-group col-md-4">
+				    <label for="inputpoint">併聯點</label>
+					<input type="text" class="form-control" id="inputpoint" placeholder="併聯點">
+				</div>
+				
+                  				<div class="form-group col-md-4">
+				    <label for="inputassoctel">聯絡人電話</label>
+					<input type="text" class="form-control" id="inputassoctel" placeholder="聯絡人電話">
+				</div>    
+                            				<div class="form-group col-md-4">
+				    <label for="inputstatus">案件現況</label>
+					<input type="text" class="form-control" id="inputstatus" placeholder="案件現況">
+				</div>   
+			
+         
+         
+
+  				<div class="form-group col-md-4">
+				    <label for="inputuser">電訪人員</label>
+					<input type="text" class="form-control" id="inputuser" placeholder="電訪人員">
+				</div> 
+
+			</div>          
+          
+			<div class="form-row">
+				<div class="form-group col-md-3">
+				    <label for="inputstatusland">土地狀態</label>
+				      <select id="inputstatusland" class="form-control">
+				        <option selected="true" disabled="true">選擇...</option>
+				        <option>全選</option>
+                          <option>變更</option>
+				        <option>不變更</option>
+				      </select>
+			    </div>
+			    <div class="form-group col-md-3">
+				    <label for="inputlandtype">用地變更分類</label>
+				      <select id="inputlandtype" class="form-control">
+				        <option selected="true" disabled="true">選擇...</option>
+				        <option>全選</option>
+                          <option>2公頃以下</option>
+				        <option>2公頃以下以上</option>
+				      </select>
+			    </div>
+			    <div class="form-group col-md-3">
+				    <label for="inputdistrict">縣市</label>
+				      <select id="inputdistrict" class="form-control">
+				        <option selected="true" disabled="true">選擇...</option>
+						<option>全選</option>
+                          <option>基隆市</option>
+						<option>台北市</option>
+						<option>新北市</option>
+						<option>桃園市</option>
+						<option>新竹縣</option>
+						<option>新竹市</option>
+						<option>苗栗縣</option>
+						<option>南投縣</option>
+						<option>台中市</option>
+						<option>彰化縣</option>
+						<option>雲林縣</option>
+						<option>嘉義縣</option>
+						<option>嘉義市</option>
+						<option>台南市</option>
+						<option>高雄市</option>
+						<option>屏東縣</option>
+						<option>台東縣</option>
+						<option>花蓮縣</option>
+						<option>宜蘭縣</option>
+						<option>澎湖縣</option>
+						<option>金門縣</option>
+						<option>連江縣</option>
+				      </select>
+			    </div>
+			    
+			</div>
+			<div class="form-row">
+				
+
+				<div class="form-group col-md-3">
+					<label for="inputstationchange">升壓站容許或變更</label>
+				      <select id="inputstationchange" class="form-control">
+				        <option selected="true" disabled="true">選擇...</option>
+						<option>全選</option>
+                          <option>變更中</option>
+				      </select>
+				</div>
+			    <div class="form-group col-md-3">
+				    <label for="inputsetloc">設置位置</label>
+				      <select id="inputsetloc" class="form-control">
+				        <option selected="true" disabled="true">選擇...</option>
+				        <option>全選</option>
+                          <option>屋頂型</option>
+				        <option>地面型</option>
+				        <option>水面型</option>
+				        <option>水面型、地面型</option>
+				      </select>
+			    </div>
+				<div class="form-group col-md-2">
+					<label for="inputstage">第幾階段</label>
+				      <select id="inputstage" class="form-control">
+				        <option selected="true" disabled="true">選擇...</option>
+						<option>全選</option>
+                        <option>A.完成規畫整合</option>
+						<option>B.完成併連審查</option>
+						<option>C.取得籌備創設</option>
+						<option>D.取得土地容許使用/完成用地變更</option>
+						<option>E.取得施工許可</option>
+						<option>F.完工併聯</option>  
+                    </select>
+				</div>   
+    
+
+				<div class="form-group col-md-2">
+					<label for="inputcontrol">是否管考</label>
+				      <select id="inputcontrol" class="form-control">
+				        <option selected="true" disabled="true">選擇...</option>
+						<option>全選</option>
+                        <option>管考</option>
+                        <option>無管考</option>
+				        <option>補充案件</option> 
+                    </select>
+				</div>    
+ </div>             
+          
+
+                
+<hr>
+<div class="form-row">
+			<div class="form-group col-md-2">
+			<label for="compare1">申請籌設容量</label>
+			      <select class="custom-select" id="compare1">
+				    <option>default</option>
+                      <option value="1">></option>
+					<option value="2"><</option>
+					<option value="3" selected="true">=</option>
+					<option value="4">>=</option>
+					<option value="5"><=</option>
+					<option value="6">!=</option>
+					<option value="7">介於</option>
+				  </select>
+			</div>
+			<div class="form-group col-md-2">
+			  <label for="compare_num1-1" style="height: 30%"></label>
+			  <input type="text" id="compare_num1-1" class="form-control" placeholder="輸入數字(KW)">
+			</div>
+			<div class="form-group col-md-2" id="compare_num1">
+			</div>          
+
+<div class="form-group col-md-2">
+			  	<label for="compare2">取得電業籌設容量</label>
+			      <select class="custom-select" id="compare2">
+				    <option>default</option>
+                      <option value="1">></option>
+					<option value="2"><</option>
+					<option value="3" selected="true">=</option>
+					<option value="4">>=</option>
+					<option value="5"><=</option>
+					<option value="6">!=</option>
+					<option value="7">介於</option>
+				  </select>
+			  </div>
+			  <div class="form-group col-md-2">
+			  	<label for="compare_num2-1" style="height: 30%"></label>
+			  	<input type="text" id="compare_num2-1" class="form-control" placeholder="輸入數字(KW)">
+			</div>
+			<div class="form-group col-md-2" id="compare_num2">
+			</div>			
+    
+    
+    
+    <div class="form-group col-md-2">
+			<label for="compare3">施工許可取得容量</label>
+			      <select class="custom-select" id="compare3">
+				    <option>default</option>
+                      <option value="1">></option>
+					<option value="2"><</option>
+					<option value="3" selected="true">=</option>
+					<option value="4">>=</option>
+					<option value="5"><=</option>
+					<option value="6">!=</option>
+					<option value="7">介於</option>
+				  </select>
+			</div>
+			<div class="form-group col-md-2">
+			  <label for="compare_num3-1" style="height: 30%"></label>
+			  <input type="text" id="compare_num3-1" class="form-control" placeholder="輸入數字(KW)">
+			</div>
+			<div class="form-group col-md-2" id="compare_num3">
+			</div>      
+</div>       
+          
+		<hr>
+			<div class="form-row">
+				<div class="form-group col-md-2">
+					<label for="time">發文日期:</label>
+					<select class="custom-select" id="time" >
+					    <option value="9">default</option>
+                        <option value="0">before</option>
+						<option value="1">after</option>
+						<option value="2" selected="true">between</option>
+					 </select>
+				</div>
+				<div class="form-group col-md-2">			
+					<div id = "dyn1">
+						<label for="start1" style="height: 30%"></label>
+						<input type="text" id="start1" class="form-control" placeholder="起始時間" style="height: 50%;">
+					</div>
+				</div>
+				<div class="form-group col-md-2">
+					<div id = "dyn2">
+						<label for="end1" style="height: 30%"></label>
+						<input type="text" id="end1" class="form-control" placeholder="結束時間">
+					</div>
+				</div>
+
+				<div class="form-group col-md-2">
+					<label for="time2">完成併聯審查日期:</label>
+					<select class="custom-select" id="time2" >
+					    <option value="9">default</option>
+                        <option value="0">before</option>
+						<option value="1">after</option>
+						<option value="2" selected="true">between</option>
+					 </select>
+				</div>
+				<div class="form-group col-md-2">			
+					<div id = "dyn1-2">
+						<label for="start1-2" style="height: 30%"></label>
+						<input type="text" id="start1-2" class="form-control" placeholder="起始時間" style="height: 50%;">
+					</div>
+				</div>
+				<div class="form-group col-md-2">
+					<div id = "dyn2-2">
+						<label for="end1-2" style="height: 30%"></label>
+						<input type="text" id="end1-2" class="form-control" placeholder="結束時間">
+					</div>
+				</div>
+			</div>
+          
+          
+          
+          
+			<div class="form-row">
+				<div class="form-group col-md-2">
+					<label for="time3">申請籌備創設日期:</label>
+					<select class="custom-select" id="time3" >
+					    <option value="9">default</option>
+                        <option value="0">before</option>
+						<option value="1">after</option>
+						<option value="2" selected="true">between</option>
+					 </select>
+				</div>
+				<div class="form-group col-md-2">			
+					<div id = "dyn1-3">
+						<label for="start1-3" style="height: 30%"></label>
+						<input type="text" id="start1-3" class="form-control" placeholder="起始時間" style="height: 50%;">
+					</div>
+				</div>
+				<div class="form-group col-md-2">
+					<div id = "dyn2-3">
+						<label for="end1-3" style="height: 30%"></label>
+						<input type="text" id="end1-3" class="form-control" placeholder="結束時間">
+					</div>
+				</div>
+
+				<div class="form-group col-md-2">
+					<label for="time4">取得籌備創設日期:</label>
+					<select class="custom-select" id="time4" >
+					    <option value="9">default</option>
+                        <option value="0">before</option>
+						<option value="1">after</option>
+						<option value="2" selected="true">between</option>
+					 </select>
+				</div>
+				<div class="form-group col-md-2">			
+					<div id = "dyn1-4">
+						<label for="start1-4" style="height: 30%"></label>
+						<input type="text" id="start1-4" class="form-control" placeholder="起始時間" style="height: 50%;">
+					</div>
+				</div>
+				<div class="form-group col-md-2">
+					<div id = "dyn2-4">
+						<label for="end1-4" style="height: 30%"></label>
+						<input type="text" id="end1-4" class="form-control" placeholder="結束時間">
+					</div>
+				</div>
+			</div>
+      
+          
+          
+          
+
+			<div class="form-row">
+				<div class="form-group col-md-2">
+					<label for="time5">取得土地容許或完成用地變更日期:</label>
+					<select class="custom-select" id="time5" >
+					    <option value="9">default</option>
+                        <option value="0">before</option>
+						<option value="1">after</option>
+						<option value="2" selected="true">between</option>
+					 </select>
+				</div>
+				<div class="form-group col-md-2">			
+					<div id = "dyn1-5">
+						<label for="start1-5" style="height: 30%"></label>
+						<input type="text" id="start1-5" class="form-control" placeholder="起始時間" style="height: 50%;">
+					</div>
+				</div>
+				<div class="form-group col-md-2">
+					<div id = "dyn2-5">
+						<label for="end1-5" style="height: 30%"></label>
+						<input type="text" id="end1-5" class="form-control" placeholder="結束時間">
+					</div>
+				</div>
+
+				<div class="form-group col-md-2">
+					<label for="time6">申請施工許可日期:</label>
+					<select class="custom-select" id="time6" >
+					    <option value="9">default</option>
+                        <option value="0">before</option>
+						<option value="1">after</option>
+						<option value="2" selected="true">between</option>
+					 </select>
+				</div>
+				<div class="form-group col-md-2">			
+					<div id = "dyn1-6">
+						<label for="start1-6" style="height: 30%"></label>
+						<input type="text" id="start1-6" class="form-control" placeholder="起始時間" style="height: 50%;">
+					</div>
+				</div>
+				<div class="form-group col-md-2">
+					<div id = "dyn2-6">
+						<label for="end1-6" style="height: 30%"></label>
+						<input type="text" id="end1-6" class="form-control" placeholder="結束時間">
+					</div>
+				</div>
+			</div>
+    
+    
+    
+			<div class="form-row">
+				<div class="form-group col-md-2">
+					<label for="time7">取得施工許可日期:</label>
+					<select class="custom-select" id="time7" >
+					    <option value="9">default</option>
+                        <option value="0">before</option>
+						<option value="1">after</option>
+						<option value="2" selected="true">between</option>
+					 </select>
+				</div>
+				<div class="form-group col-md-2">			
+					<div id = "dyn1-7">
+						<label for="start1-7" style="height: 30%"></label>
+						<input type="text" id="start1-7" class="form-control" placeholder="起始時間" style="height: 50%;">
+					</div>
+				</div>
+				<div class="form-group col-md-2">
+					<div id = "dyn2-7">
+						<label for="end1-7" style="height: 30%"></label>
+						<input type="text" id="end1-7" class="form-control" placeholder="結束時間">
+					</div>
+				</div>    
+	</div>    
+    
+</div>    
+	</div>            
+                
+
+	<br>
+	 <div id="dyn_content"></div>
+	 <div id="data_content"></div>
+
+</div>
+
+</div>
+
+<script>
+
+document.getElementById("searchCondiction_btn").addEventListener("click", reload);
+function reload() {
+  //window.location.reload();
+}   
+</script>
+
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/search_non/popper.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/datepicker.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/datepicker_zhtw.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/search_non/home.js') }}?ver=15"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/ajaxSend.js') }}?ver=2"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/user/logout.js') }}?ver=3"></script>
+{% endblock %}

@@ -1,0 +1,39 @@
+      <div class="row">
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="tele0">籌設許可名稱</label>
+            <input class="form-control" type="text" id="tele0" value="{{tel_detail[0]}}" disabled>
+          </div>
+          <div class="form-group">
+            <label for="tele1">電訪時間</label>
+            <input class="form-control" type="text" id="tele1" value="{{tel_detail[1]}}" >
+          </div>
+          <div class="form-group">
+            <label for="tele2">施工狀況</label>
+            <input class="form-control" type="text" id="tele2" value="{{tel_detail[2]}}" >
+          </div>
+          <div class="form-group">
+            <label for="tele6">此紀錄上傳時間</label>
+            <input class="form-control" type="text" id="tele6" value="{{tel_detail[6]}}" disabled>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="tele3">預計完工日</label>
+            <input class="form-control" type="text" id="tele3" value="{{tel_detail[3]}}" >
+          </div>
+          <div class="form-group">
+            <label for="tele4">問題分類</label>
+            <input class="form-control" type="text" id="tele4" value="{{tel_detail[4]}}" >
+          </div>
+          <div class="form-group">
+            <label for="tele5">問題描述</label>
+            <input class="form-control" type="text" id="tele5" value="{{tel_detail[5]}}" >
+          </div>
+        </div>
+      </div>
+
+      <script type="text/javascript">
+        date_init('#tele1');
+        date_init('#tele6');
+      </script>

@@ -1,0 +1,857 @@
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/bootstrap.css') }}">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/datepicker.css') }}">
+<style type="text/css">
+.form-check-input-reverse{
+ margin-left: 10px;
+}
+
+.btn-group-fab {
+  position: fixed; 
+  width: 50px;
+  height: auto;
+  right: 20px; bottom: 20px;
+}
+.btn-group-fab div {
+  position: relative; width: 100%;
+  height: auto;
+}
+.btn-group-fab .btn {
+  position: absolute;
+  bottom: 0;
+  border-radius: 50%;
+  display: block;
+  margin-bottom: 4px;
+  width: 40px; height: 40px;
+  margin: 4px auto;
+}
+.btn-group-fab .btn-main {
+  width: 50px; height: 50px;
+  right: 50%; margin-right: -25px;
+  z-index: 9;
+}
+.btn-group-fab .btn-sub {
+  bottom: 0; z-index: 8;
+  right: 50%;
+  margin-right: -20px;
+  -webkit-transition: all 2s;
+  transition: all 0.5s;
+}
+.btn-group-fab .form_btn .btn-sub{
+  bottom: 0; z-index: 8;
+  right: 50%;
+  margin-right: -20px;
+  -webkit-transition: all 2s;
+  transition: all 0.5s;
+}
+.btn-group-fab.active .btn-sub:nth-child(2) {
+  bottom: 60px;
+}
+.btn-group-fab.active .btn-sub:nth-child(3) {
+  bottom: 110px;
+}
+
+</style>
+{% block body %}
+
+<div class="container">
+<br>
+     {% if user_email != '' %}
+	  <div class="alert alert-info" role="alert">
+	    此案件電訪人員為<b>{{user_email}}</b>    
+	  </div> 
+    {% endif %}
+    {% if user_email == '' %}
+	  <div class="alert alert-info" role="alert">
+	    此案件無電訪人員   
+	  </div> 
+    {% endif %}       
+	  <div class="alert alert-info" role="alert">
+	    <b>{{review}} /  {{review2}} </b>    
+	  </div>    
+
+    
+{% set color = ['primary','success','danger','warning'] %}
+{% for t in tag %}
+	{% if t != '' %}
+	  <div class="alert alert-{{color[range(0, 5) | random]}}" role="alert">
+	    此案件被標記為<b>{{t}}</b>的案子    
+	  </div>
+	{% endif %}
+{% endfor %}
+    
+
+    
+    
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">案件基本資料</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">此備案所有電訪記錄</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">管控表資訊</a>
+  </li>
+   <li class="nav-item">
+    <a class="nav-link" id="pills-construction-tab" data-toggle="pill" href="#pills-construction" role="tab" aria-controls="pills-construction" aria-selected="false">施工許可資訊</a>
+  </li>   
+      <li class="nav-item">
+    <a class="nav-link" id="pills-setup-tab_non" data-toggle="pill" href="#pills-setup" role="tab" aria-controls="pills-setup" aria-selected="false">電業籌設資訊</a>
+  </li>
+      <li class="nav-item">
+    <a class="nav-link" id="pills-setup-tab_non" data-toggle="pill" href="#pills-tel_power" role="tab" aria-controls="pills-tel_power" aria-selected="false">台電電訪記錄</a>
+  </li>    
+</ul>
+    
+ 
+
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+  	<!-- for the basic infromation part -->
+  	<div class="row">
+		<div class="col-sm">
+			<div class="form-group">
+				<label for="ele0">備案編號 <span class="badge badge-danger">不可編輯</span></label>
+				<input class="form-control" type="text" id="ele0" value="{{data_list[14]}}" disabled>
+				<small id="ele0" class="form-text text-muted">這欄位無法編輯</small>
+			</div>
+			<div class="form-group">
+				<label for="rec_id">申請人或機構</label>
+				<input class="form-control" type="text" id="ele1" value="{{data_list[0]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">案件類型</label>
+				<input class="form-control" type="text" id="ele2" value="{{data_list[1]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">同意備案核准容量(kW)</label>
+				<input class="form-control" type="text" id="ele3" value="{{data_list[2]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">設置位置</label>
+				<input class="form-control" type="text" id="ele4" value="{{data_list[3]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">縣市</label>
+				<input class="form-control" type="text" id="ele5" value="{{data_list[4]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">設置場址(地址)</label>
+				<input class="form-control" type="text" id="ele6" value="{{data_list[5]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">設置場址(地號)</label>
+				<textarea class="form-control"  id="ele7" rows="7">{{data_list[6]}}</textarea>
+			</div>
+			<div class="form-group">
+				<label for="rec_id">總土地面積(平方公尺)</label>
+				<input class="form-control" type="text" id="ele18" value="{{data_list[19]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">使用分區</label>
+				<input class="form-control" type="text" id="ele19" value="{{data_list[20]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">用地類別</label>
+				<input class="form-control" type="text" id="ele20" value="{{data_list[21]}}">
+			</div>
+		</div>
+		<div class="col-sm">
+			<div class="form-group">
+				<label for="rec_id">專案類型</label>
+				<input class="form-control" type="text" id="ele8" value="{{data_list[7]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">售電方式</label>
+				<input class="form-control" type="text" id="ele9" value="{{data_list[8]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">同意備案申請日期</label>
+				<input class="form-control" type="text" id="ele10" value="{{data_list[9]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">同意備案核准日期</label>
+				<input class="form-control" type="text" id="ele11" value="{{data_list[10]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">案件狀態</label>
+				<input class="form-control" type="text" id="ele12" value="{{data_list[11]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">聯絡人姓名</label>
+				<input class="form-control" type="text" id="ele13" value="{{data_list[12]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">聯絡人電話</label>
+				<input class="form-control" type="text" id="ele14" value="{{data_list[13]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">簽約日期</label>
+				<input class="form-control" type="text" id="ele15" value="{{data_list[15]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">完工併聯日期</label>
+				<input class="form-control" type="text" id="ele16" value="{{data_list[16]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">完工併聯容量(kW)</label>
+				<input class="form-control" type="text" id="ele17" value="{{data_list[17]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">併網審查受理編號</label>
+				<input class="form-control" type="text" id="ele21" value="{{data_list[22]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">階段</label>
+				<input class="form-control" type="text" id="ele24" value="{{data_list[23]}}">
+			</div>
+          <div class="form-group">
+				<label for="rec_id">是否管考</label>
+				<input class="form-control" type="text" id="ele23" value="{{data_list[24]}}">
+			</div>
+          <div class="form-group">
+				<label for="rec_id">能源統計月報計入</label>
+				<input class="form-control" type="text" id="ele22" value="{{data_list[26]}}">
+			</div>  
+          <div class="form-group">
+				<label for="rec_id">部會</label>
+				<input class="form-control" type="text" id="ele25" value="{{data_list[27]}}">
+			</div>               
+		</div>
+	</div>
+  </div>
+    
+    
+    
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+  	<!-- for telephone record part -->
+  	<select id="select_date" class="form-control">
+	    <option selected="true" disabled="true">選擇電訪日期</option>
+	    {% for data in time_list%}
+	    <option value = "{{ data }}">{{ data }}電訪記錄</option>
+	    {% endfor %}
+	  </select>
+	  <div id="tel_detail">
+	  	      <div class="row">
+		        <div class="col-sm">
+		          <div class="form-group">
+		            <label for="tele0">備案編號</label>
+		            <input class="form-control" type="text" id="tele0" value="{{data_list[14]}}" disabled>
+		          </div>
+		          <div class="form-group">
+		            <label for="tele1">電訪日期</label>
+		            <input class="form-control" type="text" id="tele1" value="" >
+		          </div>
+		          <div class="form-group">
+		            <label for="tele2">案場施工狀況</label>
+                      <select class="custom-select" id="tele2">
+                        <option value="" disabled="true">選擇...</option>
+                        <option value="未施工">未施工</option>
+                        <option value="已施工">已施工</option>
+                        <option value="已完工">已完工</option>
+                        <option value="放棄、暫不施作">放棄、暫不施作</option>
+                      </select>     
+		          </div>
+                    
+ 		          <div class="form-group">
+		            <label for="tele4">案場問題分類</label>
+                      <select class="custom-select" id="tele4">
+                        <option value=""  disabled="true">選擇...</option>
+                        <option value="02-04 相關文件未取得 - 路權">02-04 相關文件未取得 - 路權</option>
+                        <option value="02-05 相關文件未取得 - 使用執照、雜照">02-05 相關文件未取得 - 使用執照、雜照</option>
+                        <option value="03-01 缺工">03-01 缺工</option>
+                        <option value="04-01 缺料">04-01 缺料</option>
+                        <option value="05-01 鄉民因素">05-01 鄉民因素</option>
+                        <option value="06-01 其他原因">06-01 其他原因</option>
+                      </select>     
+		          </div>                   
+                    
+                    
+                   <div class="form-group">
+		            <label for="tele5">案場問題描述</label>
+		            <textarea class="form-control" type="text" id="tele5" rows="7"> </textarea>
+		          </div>
+              
+		          <div class="form-group">
+		            <label for="tele3">案場預計完工日</label>
+		            <input class="form-control" type="text" id="tele3" value="" >
+		          </div>                    
+                    
+               
+     </div>               
+                    
+      
+		        
+		        <div class="col-sm">
+		          <div class="form-group">
+		            <label for="tele7">台電問題分類</label>
+                      <select class="custom-select" id="tele7">
+                        <option value=""  disabled="true">選擇...</option>
+                        <option value="簽約未完成">簽約未完成</option>
+                        <option value="路證未取得">路證未取得</option>
+                        <option value="細部協商(外線規劃設計)未取得">細部協商(外線規劃設計)未取得</option>
+                        <option value="線路補助費未繳交">線路補助費未繳交</option>
+                        <option value="外線未完工">外線未完工</option> 
+                        <option value="業者未報竣">業者未報竣</option>   
+                        <option value="掛表未完成">掛表未完成</option>   
+                        <option value="其他原因">其他原因</option>   
+                      </select>                       
+		          </div>
+                    
+                    
+		          <div class="form-group">
+		            <label for="tele8">台電問題描述</label>
+                      <input class="form-control" type="text" id="tele8" value="" >
+                   </div>
+  
+                    
+		          <div class="form-group">
+		            <label for="tele6">預計併聯日期</label>
+		            <input class="form-control" type="text" id="tele6" value="" >
+		          </div>
+                        
+		          <div class="form-group">
+		            <label for="tele9">備註</label>
+		            <input class="form-control" type="text" id="tele9" value="" >
+		          </div>                
+          <div class="form-group">
+		            <label for="tele10">此紀錄上傳時間</label>
+		            <input class="form-control" type="text" id="tele10" value="此為系統自定義，不需編輯" disabled>
+		          </div>
+                  
+                    
+                    
+		        </div>
+                  
+
+                  
+                  
+		      </div>
+	  </div>
+  </div>
+    
+    
+    
+    
+  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+  	<!-- for control key point information part -->
+  	<table id="myTable" class=" table order-list">
+	                <thead>
+	                    <tr>
+				            <th scope="col">關鍵事項</th>
+				            <th scope="col">主責單位</th>
+				            <th scope="col">預定完成時間</th>
+				            <th scope="col">辦理情形</th>
+				            <th scope="col"></th>
+				        </tr>
+	                </thead>
+	                <tbody>
+	                	{% for element in ctbl_list[0] %}
+	                	<tr>
+				            <td class="key_form">
+				                <input type="text" id="case{{loop.index}}-1" class="form-control" value="{{element}}"/>
+				            </td>
+				            <td class="key_form">
+				                <input type="text" id="case{{loop.index}}-2" class="form-control" value="{{ctbl_list[1][loop.index-1]}}"/>
+				            </td>
+				            <td class="key_form">
+				                <input type="text" id="case{{loop.index}}-3" class="form-control" value="{{ctbl_list[2][loop.index-1]}}"/>
+				            </td>
+				            <td class="key_form">
+                                <textarea class="form-control"  id="case{{loop.index}}-4" rows="3">{{ctbl_list[3][loop.index-1]}}</textarea>
+				                
+				            </td>
+				        </tr>
+	                	{% endfor %}
+	                </tbody>
+	</table>
+    {% set tag_list = ['TPC','台糖','大業者','工業區'] %}
+    {% for t in tag_list%}
+    	<div class="form-check form-check-inline">
+    	{% if t in tag %}		                
+		  <input class="form-check-input" type="checkbox" id="tagCheckbox{{loop.index}}" value="{{t}}" checked>
+		{% else %}
+		  <input class="form-check-input" type="checkbox" id="tagCheckbox{{loop.index}}" value="{{t}}">
+		{% endif %}
+		<label class="form-check-label" for="tagCheckbox{{loop.index}}">{{t}}</label>
+		</div>
+	{% endfor %}
+					
+
+  	
+  </div>
+    
+    
+
+
+  <div class="tab-pane fade" id="pills-setup" role="tabpanel" aria-labelledby="pills-setup-tab">
+  	<!-- for the basic infromation part -->
+  	<div class="row">
+		<div class="col-sm">
+			<div class="form-group">
+				<label for="ele0_non">籌設許可名稱 <span class="badge badge-danger"></span></label>
+				<input class="form-control" type="text" id="ele1_non"  value="{{data_list_non[1]}}">
+				<small id="ele0" class="form-text text-muted">請輸入籌設許可名稱以帶入資料</small>
+                <br>
+			   <!--<button type="button" class="btn btn-primary" id='getData-btn'>帶入資料</button>-->
+            </div>
+            
+			<div class="form-group">
+				<label for="rec_id">發文日期</label>
+				<input class="form-control" type="text" id="ele0_non" value="{{data_list_non[0]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">用地變更分類</label>
+				<input class="form-control" type="text" id="ele7_non" value="{{data_list_non[7]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">初始設置容量(kW)</label>
+				<input class="form-control" type="text" id="ele3_non" value="{{data_list_non[3]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">籌備處</label>
+				<input class="form-control" type="text" id="ele4_non"value="{{data_list_non[4]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">尚未取得同備之設置容量</label>
+				<input class="form-control" type="text" id="ele5_non" value="{{data_list_non[5]}}" >
+			</div>
+			<div class="form-group">
+				<label for="rec_id">縣市</label>
+				<input class="form-control" type="text" id="ele6_non" value="{{data_list_non[6]}}" >
+			</div>
+			<div class="form-group">
+				<label for="rec_id">發電廠部分廠址</label>
+				<textarea class="form-control"  id="ele2_non" rows="7">{{data_list_non[2]}}</textarea>
+			</div>
+			<div class="form-group">
+				<label for="rec_id">土地狀態</label>
+				<input class="form-control" type="text" id="ele8_non" value="{{data_list_non[8]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">升壓站容許或變更</label>
+				<input class="form-control" type="text" id="ele9_non"value="{{data_list_non[9]}}" >
+			</div>
+			<div class="form-group">
+				<label for="rec_id">升壓站建照</label>
+				<input class="form-control" type="text" id="ele10_non" value="{{data_list_non[10]}}">
+			</div>
+		</div>
+		<div class="col-sm">
+			<div class="form-group">
+				<label for="rec_id">備註</label>
+				<input class="form-control" type="text" id="ele11_non" value="{{data_list_non[11]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">聯絡人</label>
+				<input class="form-control" type="text" id="ele12_non"value="{{data_list_non[12]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">聯絡人電話</label>
+				<input class="form-control" type="text" id="ele13_non"value="{{data_list_non[13]}}" >
+			</div>
+			<div class="form-group">
+				<label for="rec_id">完成併聯審查日期</label>
+				<input class="form-control" type="text" id="ele14_non"value="{{data_list_non[14]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">申請籌備創設日期</label>
+				<input class="form-control" type="text" id="ele15_non"value="{{data_list_non[15]}}" >
+			</div>
+			<div class="form-group">
+				<label for="rec_id">取得籌備創設日期</label>
+				<input class="form-control" type="text" id="ele16_non"value="{{data_list_non[16]}}" >
+			</div>
+			<div class="form-group">
+				<label for="rec_id">取得土地容許或完成用地變更日期</label>
+				<input class="form-control" type="text" id="ele17_non" value="{{data_list_non[17]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">申請施工許可日期</label>
+				<input class="form-control" type="text" id="ele18_non"value="{{data_list_non[18]}}">
+			</div>
+			<div class="form-group">
+				<label for="rec_id">取得施工許可日期</label>
+				<input class="form-control" type="text" id="ele19_non" value="{{data_list_non[19]}}">
+	      </div>       
+       </div>
+ </div>       
+</div>   
+
+    
+    
+    
+    
+    
+    
+  <div class="tab-pane fade" id="pills-construction" role="tabpanel" aria-labelledby="pills-construction-tab">
+  	<!-- for control key point information part -->
+  	<table id="myTable2" class=" table order-list">
+	                <thead>
+	                    <tr>
+				            <th scope="col">工作許可名稱</th>
+				            <th scope="col">設置容量(kW)</th>
+				            <th scope="col">電源線引接點</th>
+				            <th scope="col">申請施工許可日期</th>
+				            <th scope="col">取得施工許可日期</th>
+                            <th scope="col">施工許可辦理情形說明</th>
+				        </tr>
+	                </thead>
+	                <tbody>
+	                	{% for element in con_list[0] %}
+	                	<tr>
+				            <td class="con_form">
+				                <input type="text" id="2case{{loop.index}}-1" class="form-control" value="{{element}}"/>
+				            </td>
+				            <td class="con_form">
+				                <input type="text" id="2case{{loop.index}}-2" class="form-control" value="{{con_list[1][loop.index-1]}}"/>
+				            </td>
+				            <td class="con_form">
+                                <textarea class="form-control"  id="2case{{loop.index}}-3" rows="4">{{con_list[2][loop.index-1]}}</textarea>
+
+				               
+				            </td>
+				            <td class="con_form">
+				                <input type="text" id="2case{{loop.index}}-4" class="form-control" value="{{con_list[3][loop.index-1]}}"/>
+				            </td>
+                            <td class="con_form">
+				                <input type="text" id="2case{{loop.index}}-5" class="form-control" value="{{con_list[4][loop.index-1]}}"/>
+				            </td>
+                            <td class="con_form">
+                                <textarea class="form-control"  id="2case{{loop.index}}-6" rows="4">{{con_list[5][loop.index-1]}}</textarea>
+				            </td>                            
+				        </tr>
+	                	{% endfor %}
+	                </tbody>
+	</table>
+  </div>
+    
+    
+    
+    
+ <div class="tab-pane fade" id="pills-tel_power" role="tabpanel" aria-labelledby="pills-tel_power-tab">
+  	<!-- for telephone record part -->
+  	<select id="select_date_power" class="form-control">
+	    <option selected="true" disabled="true">選擇電訪日期</option>
+	    {% for data in time_list2%}
+	    <option value = "{{ data }}">{{ data }}電訪記錄</option>
+	    {% endfor %}
+	  </select>
+	  <div id="tel_power_detail">
+	  	      <div class="row">
+		        <div class="col-sm">
+		          <div class="form-group">
+		            <label for="tele0">備案編號</label>
+		            <input class="form-control" type="text" id="tele_power0" value="{{data_list[14]}}" disabled>
+		          </div>
+		          <div class="form-group">
+		            <label for="tele_power1">電訪日期(台電)</label>
+		            <input class="form-control" type="text" id="tele_power1" value="" >
+		          </div>
+                    
+		          <div class="form-group">
+		            <label for="tele_power2">外線完工實際日期(台電)</label>
+		            <input class="form-control" type="text" id="tele_power2" value="" >
+		          </div>                    
+    		          <div class="form-group">
+		            <label for="tele_power3">業者報竣實際日期(台電)</label>
+		            <input class="form-control" type="text" id="tele_power3" value="" >
+		          </div>       
+                    		          <div class="form-group">
+		            <label for="tele_power4">完工掛表併聯實際日期(台電)</label>
+		            <input class="form-control" type="text" id="tele_power4" value="" >
+		          </div>       
+               
+     </div>               
+                    
+      
+		        
+		        <div class="col-sm">
+                    
+                    
+		          <div class="form-group">
+		            <label for="tele_power5">實際併網容量(kW)(台電)</label>
+                      <input class="form-control" type="text" id="tele_power5" value="" >
+                   </div>
+  
+                    
+		          <div class="form-group">
+		            <label for="tele_power6">案件進度(台電)</label>
+		            <input class="form-control" type="text" id="tele_power6" value="" >
+		          </div>
+                        
+		          <div class="form-group">
+		            <label for="tele_power7">備註(台電)</label>
+		            <input class="form-control" type="text" id="tele_power7" value="" >
+		          </div>   
+                    <div class="form-group">
+		            <label for="tele_power8">電訪人員(台電)</label>
+		            <input class="form-control" type="text" id="tele_power8" value="" >
+		          </div>  
+          <div class="form-group">
+		            <label for="tele_power9">此紀錄上傳時間</label>
+		            <input class="form-control" type="text" id="tele_power9" value="此為系統自定義，不需編輯" disabled>
+		          </div>
+                  
+                    
+                    
+		        </div>
+                  
+
+                  
+                  
+		      </div>
+	  </div>
+  </div>    
+
+</div>
+
+<div id="host_content"></div>
+
+</div>
+
+ <form action="{{url_for('search.S_DownControlfile')}}?idx={{data_list[14]}}" class="form_btn" method="POST" id="dn_btn2" ></form>
+ <div class="btn-group-fab" role="group" aria-label="FAB Menu">
+  <div>
+    <button type="button" class="btn btn-main btn-primary" data-toggle="tooltip" data-placement="left" title="可用功能"> <i class="fa fa-bars"></i> </button>
+    <button type="button" class="btn btn-sub btn-info" id="sendRecord" data-toggle="tooltip" data-placement="left" title="儲存變更"> <i class="far fa-paper-plane"></i> </button>
+    <button type="submit" class="btn btn-sub btn-danger" form="dn_btn2" data-toggle="tooltip" data-placement="left" title="下載管控表"> <i class="fas fa-download"></i></button>
+  </div>
+</div>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/search/popper.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/datepicker.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/datepicker_zhtw.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/search/home.js') }}?ver=21"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/ajaxSend.js') }}"></script>
+<script src="https://kit.fontawesome.com/58618a9e1b.js" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    
+    
+    //for get set-up data
+    /*
+    document.getElementById("getData-btn").addEventListener("click",getData);
+    function getData() {
+        var pro_num = $("#ele0").val();
+        var set_num = document.getElementById("ele0_non").value;
+        set_num_request = {"pro_num": pro_num,"set_num" : set_num};
+        ajaxSend(set_num_request, "getSetupData", "#host_content");
+
+    }   
+    */
+    
+	// for fab btn
+	 $('.btn-group-fab').on('click', '.btn', function() {
+	    $('.btn-group-fab').toggleClass('active');
+	  });
+
+	var tag = {{ tag_str|tojson }};
+    
+	var sing_case = document.getElementById("select_date");
+	sing_case.addEventListener('change', function(){
+		var date = $("#select_date option:selected").val();
+        var pro_num = $("#ele0").val();
+	    request = {"date": date, "project_number": pro_num}
+	    ajaxSend(request, "searchTelResult", "#tel_detail");
+	});
+	var sing_case_power = document.getElementById("select_date_power");
+    
+	sing_case_power.addEventListener('change', function(){
+		var date = $("#select_date_power option:selected").val();
+        var pro_num = $("#ele0").val();
+	    request = {"date": date, "project_number": pro_num}
+	    ajaxSend(request, "searchTelResult_power", "#tel_power_detail");
+        console.log("success");
+        console.log(request);
+	});
+
+		// for sending edited record
+        console.log("serarch");
+		date_init('#ele10');
+		date_init('#ele11');
+		date_init('#ele15');
+		date_init('#ele16');
+    
+		date_init('#ele0_non');
+		date_init('#ele14_non');
+		date_init('#ele15_non');
+		date_init('#ele16_non');
+		date_init('#ele17_non');
+		date_init('#ele18_non');
+		date_init('#ele19_non');
+		//date_init('#tele1');
+		//date_init('#tele3');
+		date_init('#ctbl4');
+		date_init('#ctbl7');
+		date_init('#ctbl8');
+		date_init('#case1-3');
+		date_init('#case2-3');
+		date_init('#case3-3');
+		date_init('#case4-3');
+		date_init('#case5-3');
+        date_init('#tele1');
+         //date_init('#tele3');
+        //date_init('#tele6');
+		date_init('#2case1-5');
+		date_init('#2case2-5');
+		date_init('#2case3-5');
+		date_init('#2case4-5');
+		date_init('#2case5-5');
+		date_init('#2case6-5');
+		date_init('#2case7-5');
+		date_init('#2case8-5');
+		date_init('#2case9-5');
+		date_init('#2case10-5');
+ 		date_init('#2case11-5');
+		date_init('#2case12-5');
+		date_init('#2case13-5');
+		date_init('#2case14-5');
+		date_init('#2case15-5');
+		date_init('#2case1-4');
+		date_init('#2case2-4');
+		date_init('#2case3-4');
+		date_init('#2case4-4');
+		date_init('#2case5-4');
+		date_init('#2case6-4');
+		date_init('#2case7-4');
+		date_init('#2case8-4');
+		date_init('#2case9-4');
+		date_init('#2case10-4');   
+		date_init('#2case11-4');
+		date_init('#2case12-4');
+		date_init('#2case13-4');
+		date_init('#2case14-4');
+		date_init('#2case15-4');     
+    
+        date_init('#tele_power1');   
+        date_init('#tele_power2');   
+        date_init('#tele_power3');   
+        date_init('#tele_power4');     
+    
+    
+	  var db_btn = document.getElementById("sendRecord");
+	  db_btn.addEventListener('click',function(){
+	    var result = [];
+	    var result2 = [];
+	    var result_tel_power = [];
+	    var data;
+	    // iteraterate over all the nput field to get value
+	    for (var i = 1; i <= 17; i++) {
+	    	// text field
+	    	if(i == 7){
+	    		data = $("#ele"+i).val();
+	    	}else{
+	    		data = $("#ele"+i).val();
+	    	}
+	    	result.push(data)
+	    }
+
+	    for (var i = 0; i <= 10; i++){
+	    	data = $("#tele"+i).val();
+
+            console.log("data",data);
+	    	result2.push(data)
+	    }
+          
+	    for (var i = 0; i <= 8; i++){
+	    	data = $("#tele_power"+i).val();
+
+            console.log("data",data);
+	    	result_tel_power.push(data)
+	    }          
+		console.log("result_tel_power",result_tel_power)
+
+	    // reorder the pro num for basic data
+	    result.splice(14, 0, $("#ele0").val());
+
+		// process the keypoint form
+		let str_array2 = ['','','','','','']
+		$(".con_form .form-control").each(function(index) {
+			str_array2[index%6] += ($(this).val()+"%");
+		});
+
+		str_array2[0] = str_array2[0].slice(0, -1);
+		str_array2[1] = str_array2[1].slice(0, -1);
+		str_array2[2] = str_array2[2].slice(0, -1);
+		str_array2[3] = str_array2[3].slice(0, -1);
+		str_array2[4] = str_array2[4].slice(0, -1);
+		str_array2[5] = str_array2[5].slice(0, -1);          
+		if(str_array2[0].split("%").length != 15){
+			let remain = 15 - str_array2[0].split("%").length;
+			for(var i = 0; i < remain; i++){
+				str_array2[0] += "%";
+				str_array2[1] += "%";
+				str_array2[2] += "%";
+				str_array2[3] += "%";
+				str_array2[4] += "%";   
+				str_array2[5] += "%";                 
+			}
+		}
+          
+		// process the keypoint form
+		let str_array = ['','','','']
+		$(".key_form .form-control").each(function(index) {
+			str_array[index%4] += ($(this).val()+"%");
+		});
+
+		str_array[0] = str_array[0].slice(0, -1);
+		str_array[1] = str_array[1].slice(0, -1);
+		str_array[2] = str_array[2].slice(0, -1);
+		str_array[3] = str_array[3].slice(0, -1);
+
+		if(str_array[0].split("%").length != 5){
+			let remain = 5 - str_array[0].split("%").length;
+			for(var i = 0; i < remain; i++){
+				str_array[0] += "%";
+				str_array[1] += "%";
+				str_array[2] += "%";
+				str_array[3] += "%";
+			}
+		}
+          
+          
+		// Process tag checkbox
+		let tag_str = '';
+		for(var i = 1; i <= 4; i++){
+			let element = document.getElementById("tagCheckbox"+i)
+			if(element.checked){
+				tag_str += element.value;
+				tag_str += "%"
+			}
+		}
+
+		tag_str = tag_str.slice(0,-1);
+		// push to record data
+		result.push(tag_str);
+          
+	    // iteraterate over all the nput field to get value 用地類型、使用分區
+	    for (var i = 18; i <= 25; i++) {
+            data = $("#ele"+i).val();
+	        result.push(data);
+	    }
+          
+		// tel record not render
+		if(result2[0] == undefined)
+			result2 = [$("#ele0").val(),'','','','','','','','','','']
+		console.log(result2)
+	    //$("#host_content").html(waiting_con);
+	    var result5 = [];          
+	    for (var i = 0; i <= 23; i++) {
+	    	// text field
+	    	if(i == 2){
+	    		data = $("#ele"+i+"_non").val();
+                //console.log("ffffff",data);
+	    	}else{
+	    		data = $("#ele"+i+"_non").val();
+	    	}
+	    	result5.push(data);
+	    }        
+
+	    request = {"result" : result, "result2" : result2, "result3":str_array,"result4":str_array2,"result5" : result5,"result_tel_power":result_tel_power}
+          console.log("sdf",result_tel_power);
+	    ajaxSend(request, "storeSing", "#host_content");
+	  })
+</script>
+
+{% endblock %}

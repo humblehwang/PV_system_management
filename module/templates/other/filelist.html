@@ -1,0 +1,74 @@
+
+ <h3>此份管考案件總數為{{re_num}}筆</h3>
+ <br>
+
+  <div class="form-group">
+
+     <div class="row">
+        
+         <div class="col">
+             <label for="select_host">查看同意備案管考案件</label>
+         <select class="form-control" id="select_host" style="width :50%">
+            <h5>查看同意備案管考案件</h5>
+          <option selected="true" disabled="true" >查看同意備案管考案件</option>
+          {% for data in pro_list %}
+          <option mytag="{{data[0]}}">{{data[0]}}</option>
+          {% endfor %}
+        </select>
+         </div>
+         
+          <div class="col">
+              <label for="select_host2">查看開發中案件管考案件</label>
+         <select class="form-control" id="select_host2" style="width :50%">
+          <h5>查看開發中案件管考案件</h5>
+             <option selected="true" disabled="true" >查看開發中案件管考案件</option>
+          {% for data in set_list %}
+          <option mytag="{{data[0]}}">{{data[0]}}</option>
+          {% endfor %}
+        </select>
+         </div>
+         
+         
+        <pre class="tab">     </pre>   
+        <button type="button" class="btn btn-danger" id="db_btn">確認上傳</button>
+      </div> 
+  </div>
+ 
+
+
+
+  <script type="text/javascript">
+      // File upload function
+  var host_select = document.getElementById("select_host");
+  var host_select2 = document.getElementById("select_host2");
+    
+  // Listen for the file input change
+  host_select.addEventListener('change', function(){
+    var waiting_con = '<br><br><br><div class="d-flex flex-column align-items-center justify-content-center"><div class="row"><div class="spinner-border" role="status" style="width: 5rem; height: 5rem;"><span class="sr-only">Loading...</span></div></div><br><div class="row"><strong>讀取資料中....</strong></div></div></div>'
+    $("#host_content").html(waiting_con);
+    var case_host = $(this).children("option:selected").val();
+    request = {"ID" : case_host,"flag":'1'}
+    ajaxSend(request, "host", "#host_content");
+  });
+  host_select2.addEventListener('change', function(){
+    var waiting_con = '<br><br><br><div class="d-flex flex-column align-items-center justify-content-center"><div class="row"><div class="spinner-border" role="status" style="width: 5rem; height: 5rem;"><span class="sr-only">Loading...</span></div></div><br><div class="row"><strong>讀取資料中....</strong></div></div></div>'
+    $("#host_content").html(waiting_con);
+    var case_host = $(this).children("option:selected").val();
+    request = {"ID" : case_host,"flag":'0'}
+    ajaxSend(request, "host", "#host_content");
+  });
+
+
+      
+      
+  // btn listener
+  var db_btn = document.getElementById("db_btn");
+
+  db_btn.addEventListener('click',function(){
+    var waiting_con = '<br><br><br><div class="d-flex flex-column align-items-center justify-content-center"><div class="row"><div class="spinner-border text-success" role="status" style="width: 5rem; height: 5rem;"><span class="sr-only">Loading...</span></div></div><br><div class="row"><strong>上傳資料中....</strong></div></div></div>'
+    $("#host_content").html(waiting_con);
+    request = {"test" : "123"}
+    ajaxSend(request, "store", "#host_content");
+  })
+
+  </script>

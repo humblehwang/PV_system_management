@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<script src="https://cdn.jsdelivr.net/npm/firebase@6.1.0/firebase.js"></script>
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script>
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-analytics.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-firestore.js"></script>
+
+
+<script>
+var firebaseConfig = {
+    apiKey: "AIzaSyAYm3PUeQpMR62EQzBCNoX4SJsl6jPRZcM",
+    authDomain: "itriwebsystem.firebaseapp.com",
+    databaseURL: "https://itriwebsystem.firebaseio.com",
+    projectId: "itriwebsystem",
+    storageBucket: "itriwebsystem.appspot.com",
+    messagingSenderId: "694056489044",
+    appId: "1:694056489044:web:295ae1c91d9603df385dc1",
+    measurementId: "G-YMGMG1ENZB"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+</script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/user/checkAuthority.js') }}?ver=4"></script>
+
+
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/bootstrap.css') }}">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/all.min.css') }}">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/datepicker.css') }}">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+
+<div class="wrapper d-flex align-items-stretch">
+<nav id="sidebar"style="background-color:#091B2A;">
+		<div class="custom-menu">
+			<button type="button" id="sidebarCollapse" class="btn btn-dark">
+	          <i class="fas fa-bars"></i>
+	          <span class="sr-only">Toggle Menu</span>
+	        </button>
+        </div>
+		<div class="p-4 pt-5">
+		  	<h4><a href="/search" class="logo"><img src="/static/img/logo1.png" width="200" height="100" class="d-inline-block align-top" alt=""></a></h4>
+            <h5  style="color:#B3D9D9"class="font-weight-bolder">太陽光電達標管考資訊平台</h5>
+		  	<br>
+	        <ul class="list-unstyled components mb-5">
+
+                
+                
+<li>
+              <a href="#pageSubmenu_non" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle font-weight-bolder"><img src="/static/img/document.png" width="30" height="30" class="d-inline-block align-top" alt="">開發中案件</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu_non">
+                <li>
+                    <a href="/uploadNon" class="font-weight-bolder">上傳新案件</a>
+                </li>
+
+		                <li>
+		                	<a href="/editNon" class="font-weight-bolder">上傳編輯檔案</a>
+		                </li>
+
+                <li>
+                    <a href="/searchNon" class="font-weight-bolder">查詢和編輯案件</a>
+                </li>
+              </ul>
+	          </li> 
+<li>
+              <a href="#pageSubmenu_other_non" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle font-weight-bolder"><img src="/static/img/globe-xxl.png" width="30" height="30" class="d-inline-block align-top" alt="">開發中案件其他功能</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu_other_non">
+		                <li>
+		                	<a href="#" class="font-weight-bolder">統計圖表</a>
+		                </li>
+
+		                <li>
+		                	<a href="#" class="font-weight-bolder">檔案格式修正</a>
+		                </li>
+		                <li>
+		                	<a href="/otherNon" class="font-weight-bolder">開發中案件分案</a>
+		                </li>
+              </ul>
+	          </li> 
+                
+<li>
+              <a href="#pageSubmenu_apply" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle font-weight-bolder"><img src="/static/img/solar-panel-xxl.png" width="30" height="30" class="d-inline-block align-top" alt="">同意備案</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu_apply">
+                <li>
+                    <a href="/upload" class="font-weight-bolder">上傳新案件</a>
+                </li>
+
+		                <li>
+		                	<a href="/edit" class="font-weight-bolder">上傳編輯檔案</a>
+		                </li>
+
+                <li>
+                    <a href="/search" class="font-weight-bolder">查詢和編輯案件</a>
+                </li>
+                <li>
+                    <a href="/control" class="font-weight-bolder">管控表編輯</a>
+                </li>
+                                  <li>
+                    <a href="/upload/tel" class="font-weight-bolder">電訪記錄上傳</a>
+                </li>
+                                  <li>
+                    <a href="/upload/tel_power" class="font-weight-bolder">台電電訪記錄上傳</a>
+                </li>
+                                    <li>
+                    <a href="/search_tel" class="font-weight-bolder">電訪記錄搜尋</a>
+                </li>
+              </ul>
+	          </li>                
+                
+                
+                
+<li>
+              <a href="#pageSubmenu_control" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle font-weight-bolder"><img src="/static/img/globe-xxl.png" width="30" height="30" class="d-inline-block align-top" alt="">同意備案其他功能</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu_control">
+            <li>
+                    <a href="/other" class="font-weight-bolder">管控案件上傳</a>
+                </li>
+		                <li>
+		                	<a href="/other/complete" class="font-weight-bolder">備案資料補齊</a>
+		                </li> 
+		                <li>
+		                	<a href="/other/table" class="font-weight-bolder">統計圖表</a>
+		                </li>
+
+ 
+		                <li>
+		                	<a href="/other/format" class="font-weight-bolder">檔案格式修正</a>
+		                </li>
+		                <li>
+		                	<a href="/other/assign" class="font-weight-bolder">同意備案分案</a>
+		                </li>
+                 		  <li>
+		                	<a href="/other/delete" class="font-weight-bolder">刪除同意備案編號</a>
+		                </li>
+              </ul>
+	          </li> 
+
+
+                
+<li>                
+                
+                
+                
+            
+            <li>
+              <a href="#pageSubmenu_user" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle font-weight-bolder"><img src="/static/img/user.png" width="30" height="30" class="d-inline-block align-top" alt="">使用者</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu_user">
+                <li>
+                    <a href="/reset" class="font-weight-bolder">更改密碼</a>
+                </li>
+ 
+
+              </ul>
+                <a id="signout_btn" href="/search" class="logout"><img src="/static/img/logout.png" width="30" height="30" class="d-inline-block align-top" alt="">登出</a>
+	         </li>
+            
+            </ul>
+            
+	      </div>
+    	</nav>
+
+<div class="container">
+	<br><br>
+	<div class="alert alert-info" role="alert">
+	  <h4 class="alert-heading font-weight-bold">上傳備案清冊</h4>
+	  <p >此頁面讓使用者上傳備案清冊檔案,並提供檔案內容供使用者確認,確認完即上傳更新檔案內所有備案</p>
+	  <p>(只接受xls/xlsx檔案)</p>
+        <p>接受欄位：'項次','申請人或機構','案件型別','同意備案核准容量(kW)','設置位置','縣市','設置場址(地址)','設置場址(地號)','統計分類','售電方式','同意備案申請日期','同意備案核准日期','案件狀態','聯絡人姓名','聯絡人電話','備案編號','簽約日期','完工併聯日期','完工併聯容量(kW)','電訪日期','案場施工狀況','案場預計完工日','案場問題分類','案場問題描述','預計併聯日期','台電問題分類','台電問題描述','備註','TPC','台糖','大業者','工業局工業區','總土地面積(平方公尺)','使用分區','用地類別','併網審查受理編號','能源統計月報計入','電訪人員','階段','部會','出流海管'</p>
+	</div>
+	<form id="upload_file">
+	  <div class="custom-file">
+	    <input type="file" class="custom-file-input" id="file_uploader" accept=".xlsx">
+	    <label class="custom-file-label" for="customFile">上傳想新增之備案核准清冊</label>
+	  </div>
+	</form>
+	
+	 <div id="data_content"></div>
+	 <div id="host_content"></div>
+</div>
+
+</div>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/datepicker.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/datepicker_zhtw.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/upload/popper.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/upload/home.js') }}?ver=3"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/ajaxSend.js') }}?ver=2"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/user/logout.js') }}?ver=2"></script>

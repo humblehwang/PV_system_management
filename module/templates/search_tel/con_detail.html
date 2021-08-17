@@ -1,0 +1,36 @@
+      <div class="row">
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="con0">備案編號</label>
+            <input class="form-control" type="text" id="con0" value="{{con_detail[0]}}" disabled>
+          </div>
+          <div class="form-group">
+            <label for="con1">工作許可名稱</label>
+            <input class="form-control" type="text" id="con1" value="{{con_detail[1]}}" >
+          </div>
+          <div class="form-group">
+            <label for="con2">設置容量(kW)</label>
+            <input class="form-control" type="text" id="con2" value="{{con_detail[2]}}" >
+          </div>
+          <div class="form-group">
+            <label for="con3">電源線引接點</label>
+            <input class="form-control" type="text" id="con3" value="{{con_detail[3]}}" disabled>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="con4">申請施工許可日期</label>
+            <input class="form-control" type="text" id="con4" value="{{con_detail[4]}}" >
+          </div>
+          <div class="form-group">
+            <label for="con5">取得施工許可日期</label>
+            <input class="form-control" type="text" id="con5" value="{{con_detail[5]}}" >
+          </div>
+
+        </div>
+      </div>
+
+      <script type="text/javascript">
+        date_init('#tele4');
+        date_init('#tele5');
+      </script>

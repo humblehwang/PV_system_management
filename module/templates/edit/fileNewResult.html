@@ -1,0 +1,244 @@
+{% set color = ['primary','success','danger','warning','info'] %}
+{% for t in tag %}
+	{% if t != '' %}
+	  <div class="alert alert-{{color[range(0, 5) | random]}}" role="alert">
+	    此案件被標記為<b>{{t}}</b>的案子
+	  </div>
+	{% endif %}
+{% endfor %}
+
+<div class="card-header" id="headingOne">
+	<h2 style="font-family: 'Microsoft JhengHei'; ">案件基本資料</h2>
+	<h2 class="mb-0"> 
+		<button class="btn btn-info" type="button" data-toggle="modal" data-target="#Modal1">點擊顯示內容</button>
+	</h2>
+</div>
+<br>
+<div class="card-header" id="headingtwo">
+	{% if new_tel|length < 1 %}
+    <h2 style="font-family: 'Microsoft JhengHei'; ">此備案無有效的電訪紀錄</h2> 
+	{% else %}
+	    <h2 style="font-family: 'Microsoft JhengHei'; ">此備案變動之電訪記錄</h2> 
+      	<div class="row">
+			<div class="col-sm">
+				<button class="btn btn-info" type="button" data-toggle="modal" data-target="#Modal2"> 點擊顯示內容</button>
+			</div>
+	</div>
+	{% endif %}
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">備案基本資料</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<div class="row">
+	<div class="col-sm">
+		<div>
+			<label class="font-weight-bold" for="ele14">備案編號: <span class="badge badge-danger">新備案</span></label>
+			<p class="text-success" id="ele14">{{new[14]}}</p>
+		</div>
+		<div>
+			<label class="font-weight-bold" for="ele0">申請人或機構: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="ele0">{{new[0]}}</p>
+		</div>
+		<div>
+			<label class="font-weight-bold" for="ele1">案件型別: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="ele1">{{new[1]}}</p>
+		</div>
+		<div>
+			<label class="font-weight-bold" for="ele2">同意備案核准容量(kW): <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="ele2">{{new[2]}}</p>
+		</div>
+		<div>
+			<label class="font-weight-bold" for="ele3">設置位置: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="ele3">{{new[3]}}</p>
+		</div>
+		<div>
+			<label class="font-weight-bold" for="ele4">縣市: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="ele4">{{new[4]}}</p>
+		</div>
+		<div>
+			<label class="font-weight-bold" for="ele5">設置場址(地址): <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="ele5">{{new[5]}}</p>
+		</div>
+		<div>
+			<label class="font-weight-bold" for="ele6">設置場址(地號): <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="ele6">{{new[6]}}</p>
+		</div>	
+	</div>
+	<div class="col-sm">
+		<div>
+			<label class="font-weight-bold" for="ele7">專案類型: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="ele7">{{new[7]}}</p>
+		</div>
+		<div>
+			<label class="font-weight-bold" for="ele8">售電方式: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="ele8">{{new[8]}}</p>
+		</div>
+		<div>
+			<label class="font-weight-bold" for="ele9">同意備案申請日期: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="ele9">{{new[9]}}</p>
+		</div>
+		<div>
+			<label class="font-weight-bold" for="ele10">同意備案核准日期: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="ele10">{{new[10]}}</p>
+		</div>
+		<div>
+			<label class="font-weight-bold" for="ele11">案件狀態: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="ele11">{{new[11]}}</p>
+		</div>
+		<div>
+			<label class="font-weight-bold" for="ele12">聯絡人姓名: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="ele12">{{new[12]}}</p>
+		</div>
+		<div>
+			<label class="font-weight-bold" for="ele13">聯絡人電話: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="ele13">{{new[13]}}</p>
+		</div>
+		<div>
+			<label class="font-weight-bold" for="ele15">簽約日期: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="ele15">{{new[15]}}</p>
+		</div>
+		<div>
+			<label class="font-weight-bold" for="ele16">完工併聯日期: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="ele16">{{new[16]}}</p>
+		</div>
+		<div>
+			<label class="font-weight-bold" for="ele17">完工併聯容量(kW): <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="ele17">{{new[17]}}</p>
+		</div>
+        
+		<div>
+			<label class="font-weight-bold" for="ele18">總土地面積(平方公尺)(kW): <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="ele18">{{new[19]}}</p>
+		</div>
+		<div>
+			<label class="font-weight-bold" for="ele19">使用分區: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="ele19">{{new[20]}}</p>
+		</div>
+        
+		<div>
+			<label class="font-weight-bold" for="ele20">用地類別: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="ele20">{{new[21]}}</p>
+		</div>
+
+		<div>
+			<label class="font-weight-bold" for="ele21">併網審查受理編號: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="ele21">{{new[22]}}</p>
+		</div>
+        		<div>
+			<label class="font-weight-bold" for="ele22">能源統計月報計入: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="ele22">{{new[23]}}</p>
+		</div>
+        		<div>
+			<label class="font-weight-bold" for="ele23">階段: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="ele23">{{new[24]}}</p>
+		</div>        
+        		<div>
+			<label class="font-weight-bold" for="ele24">部會: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="ele24">{{new[25]}}</p>
+		</div>        
+        
+        		<div>
+			<label class="font-weight-bold" for="ele24">能源統計(工研院): <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="ele24">{{new[26]}}</p>
+		</div>                
+        
+        
+        
+        
+        
+        
+        
+        
+	</div>
+</div>
+      </div>
+     </div>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">電訪記錄</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	
+
+<div class="alert alert-success" role="alert">
+  此電訪記錄有欄位更動
+</div>
+<div class="row">
+	<div class="col-sm">
+		<div>
+			<label class="font-weight-bold" for="tele0">備案編號: <span class="badge badge-danger">新備案</span></label>
+			<p class="text-success" id="tele0">{{new_tel[0]}}</p>
+		</div>
+		<div>
+			<label class="font-weight-bold" for="tele1">電訪時間: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="tele1">{{new_tel[1]}}</p>
+		</div>
+		<div>
+			<label class="font-weight-bold" for="tele2">案場施工狀況: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="tele2">{{new_tel[2]}}</p>
+		</div>
+        
+		<div>
+			<label class="font-weight-bold" for="tele4">案場問題分類: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="tele4">{{new_tel[4]}}</p>
+		</div>   
+        
+		<div>
+			<label class="font-weight-bold" for="tele5">案場問題描述: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="tele5">{{new_tel[5]}}</p>
+		</div>    
+        
+		<div>
+			<label class="font-weight-bold" for="tele3">案場預計完工日: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="tele3">{{new_tel[3]}}</p>
+		</div>
+        
+        
+	</div>
+	<div class="col-sm">
+		<div>
+			<label class="font-weight-bold" for="tele7">台電問題分類: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="tele7">{{new_tel[7]}}</p>
+		</div>
+		<div>
+			<label class="font-weight-bold" for="tele8">台電問題描述: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="tele8">{{new_tel[8]}}</p>
+		</div>
+		<div>
+			<label class="font-weight-bold" for="tele6">預計案場併聯日: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="tele6">{{new_tel[6]}}</p>
+		</div>
+        
+		<div>
+			<label class="font-weight-bold" for="tele9">備註: <span class="badge badge-danger">新欄位</span></label>
+			<p class="text-success" id="tele9">{{new_tel[9]}}</p>
+		</div>
+	</div>
+</div>
+
+
+      </div>
+    </div>
+  </div>
+</div>

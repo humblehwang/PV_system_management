@@ -1,0 +1,57 @@
+
+ <h3>欲刪除之備案共有{{re_num}}筆</h3>
+ <br>
+
+  <div class="form-group">
+     <div class="row">
+        <pre class="tab">     </pre>   
+        <button type="button" class="btn btn-danger" id="db_btn1">刪除同意備案資料</button>
+         <button type="button" class="btn btn-warning" id="db_btn2">刪除電訪記錄資料</button>
+         <button type="button" class="btn btn-info" id="db_btn3">刪除管控表資料</button>
+          <button type="button" class="btn btn-primary" id="db_btn4">刪除台電電訪記錄</button>
+
+      </div> 
+  </div>
+ 
+</div>
+
+
+  <script type="text/javascript">
+
+
+  // btn listener
+  var db_btn1 = document.getElementById("db_btn1");
+
+  db_btn1.addEventListener('click',function(){
+    var waiting_con = '<br><br><br><div class="d-flex flex-column align-items-center justify-content-center"><div class="row"><div class="spinner-border text-success" role="status" style="width: 5rem; height: 5rem;"><span class="sr-only">Loading...</span></div></div><br><div class="row"><strong>刪除資料中....</strong></div></div></div>'
+    $("#host_content").html(waiting_con);
+      request="record_data";
+    ajaxSend(request, "delete_rows", "#host_content");
+  })
+  // btn listener
+  var db_btn2 = document.getElementById("db_btn2");
+
+  db_btn2.addEventListener('click',function(){
+    var waiting_con = '<br><br><br><div class="d-flex flex-column align-items-center justify-content-center"><div class="row"><div class="spinner-border text-success" role="status" style="width: 5rem; height: 5rem;"><span class="sr-only">Loading...</span></div></div><br><div class="row"><strong>刪除資料中....</strong></div></div></div>'
+    $("#host_content").html(waiting_con);
+      request="tel_record";
+    ajaxSend(request, "delete_rows", "#host_content");
+  })
+   // btn listener
+  var db_btn3 = document.getElementById("db_btn3");
+
+  db_btn3.addEventListener('click',function(){
+    var waiting_con = '<br><br><br><div class="d-flex flex-column align-items-center justify-content-center"><div class="row"><div class="spinner-border text-success" role="status" style="width: 5rem; height: 5rem;"><span class="sr-only">Loading...</span></div></div><br><div class="row"><strong>刪除資料中....</strong></div></div></div>'
+    $("#host_content").html(waiting_con);
+      request="ctbl_record";
+    ajaxSend(request, "delete_rows", "#host_content");
+  })     
+  var db_btn4 = document.getElementById("db_btn4");
+
+  db_btn4.addEventListener('click',function(){
+    var waiting_con = '<br><br><br><div class="d-flex flex-column align-items-center justify-content-center"><div class="row"><div class="spinner-border text-success" role="status" style="width: 5rem; height: 5rem;"><span class="sr-only">Loading...</span></div></div><br><div class="row"><strong>刪除資料中....</strong></div></div></div>'
+    $("#host_content").html(waiting_con);
+      request="tel_power_record";
+    ajaxSend(request, "delete_rows", "#host_content");
+  })        
+  </script>

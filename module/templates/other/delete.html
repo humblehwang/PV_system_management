@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<script src="https://cdn.jsdelivr.net/npm/firebase@6.1.0/firebase.js"></script>
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script>
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-analytics.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-firestore.js"></script>
+
+
+<script>
+var firebaseConfig = {
+    apiKey: "AIzaSyAYm3PUeQpMR62EQzBCNoX4SJsl6jPRZcM",
+    authDomain: "itriwebsystem.firebaseapp.com",
+    databaseURL: "https://itriwebsystem.firebaseio.com",
+    projectId: "itriwebsystem",
+    storageBucket: "itriwebsystem.appspot.com",
+    messagingSenderId: "694056489044",
+    appId: "1:694056489044:web:295ae1c91d9603df385dc1",
+    measurementId: "G-YMGMG1ENZB"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+</script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/user/checkAuthority_delete.js') }}?ver=5"></script>
+
+
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/bootstrap.css') }}">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/all.min.css') }}">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/datepicker.css') }}">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+
+<div class="wrapper d-flex align-items-stretch">
+<nav id="sidebar"style="background-color:#091B2A;">
+		<div class="custom-menu">
+			<button type="button" id="sidebarCollapse" class="btn btn-dark">
+	          <i class="fas fa-bars"></i>
+	          <span class="sr-only">Toggle Menu</span>
+	        </button>
+        </div>
+		<div class="p-4 pt-5">
+		  	<h4><a href="/search" class="logo"><img src="/static/img/logo1.png" width="200" height="100" class="d-inline-block align-top" alt=""></a></h4>
+            <h5  style="color:#B3D9D9"class="font-weight-bolder">太陽光電達標管考資訊平台</h5>
+		  	<br>
+	        <ul class="list-unstyled components mb-5">
+
+                
+                
+<li>
+              <a href="#pageSubmenu_non" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle font-weight-bolder"><img src="/static/img/document.png" width="30" height="30" class="d-inline-block align-top" alt="">開發中案件</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu_non">
+                <li>
+                    <a href="/uploadNon" class="font-weight-bolder">上傳新案件</a>
+                </li>
+
+		                <li>
+		                	<a href="/editNon" class="font-weight-bolder">上傳編輯檔案</a>
+		                </li>
+
+                <li>
+                    <a href="/searchNon" class="font-weight-bolder">查詢和編輯案件</a>
+                </li>
+              </ul>
+	          </li> 
+<li>
+              <a href="#pageSubmenu_other_non" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle font-weight-bolder"><img src="/static/img/globe-xxl.png" width="30" height="30" class="d-inline-block align-top" alt="">開發中案件其他功能</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu_other_non">
+		                <li>
+		                	<a href="#" class="font-weight-bolder">統計圖表</a>
+		                </li>
+
+		                <li>
+		                	<a href="#" class="font-weight-bolder">檔案格式修正</a>
+		                </li>
+		                <li>
+		                	<a href="/otherNon" class="font-weight-bolder">開發中案件分案</a>
+		                </li>
+              </ul>
+	          </li> 
+                
+<li>
+              <a href="#pageSubmenu_apply" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle font-weight-bolder"><img src="/static/img/solar-panel-xxl.png" width="30" height="30" class="d-inline-block align-top" alt="">同意備案</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu_apply">
+                <li>
+                    <a href="/upload" class="font-weight-bolder">上傳新案件</a>
+                </li>
+
+		                <li>
+		                	<a href="/edit" class="font-weight-bolder">上傳編輯檔案</a>
+		                </li>
+
+                <li>
+                    <a href="/search" class="font-weight-bolder">查詢和編輯案件</a>
+                </li>
+                <li>
+                    <a href="/control" class="font-weight-bolder">管控表編輯</a>
+                </li>
+                                  <li>
+                    <a href="/upload/tel" class="font-weight-bolder">電訪記錄上傳</a>
+                </li>
+                                  <li>
+                    <a href="/upload/tel_power" class="font-weight-bolder">台電電訪記錄上傳</a>
+                </li>
+                                    <li>
+                    <a href="/search_tel" class="font-weight-bolder">電訪記錄搜尋</a>
+                </li>
+              </ul>
+	          </li>                
+                
+                
+                
+<li>
+              <a href="#pageSubmenu_control" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle font-weight-bolder"><img src="/static/img/globe-xxl.png" width="30" height="30" class="d-inline-block align-top" alt="">同意備案其他功能</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu_control">
+            <li>
+                    <a href="/other" class="font-weight-bolder">管控案件上傳</a>
+                </li>
+		                <li>
+		                	<a href="/other/complete" class="font-weight-bolder">備案資料補齊</a>
+		                </li> 
+		                <li>
+		                	<a href="/other/table" class="font-weight-bolder">統計圖表</a>
+		                </li>
+
+ 
+		                <li>
+		                	<a href="/other/format" class="font-weight-bolder">檔案格式修正</a>
+		                </li>
+		                <li>
+		                	<a href="/other/assign" class="font-weight-bolder">同意備案分案</a>
+		                </li>
+                 		  <li>
+		                	<a href="/other/delete" class="font-weight-bolder">刪除同意備案編號</a>
+		                </li>
+              </ul>
+	          </li> 
+
+
+                
+<li>                
+                
+                
+                
+            
+            <li>
+              <a href="#pageSubmenu_user" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle font-weight-bolder"><img src="/static/img/user.png" width="30" height="30" class="d-inline-block align-top" alt="">使用者</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu_user">
+                <li>
+                    <a href="/reset" class="font-weight-bolder">更改密碼</a>
+                </li>
+ 
+
+              </ul>
+                <a id="signout_btn" href="/search" class="logout"><img src="/static/img/logout.png" width="30" height="30" class="d-inline-block align-top" alt="">登出</a>
+	         </li>
+            
+            </ul>
+            
+	      </div>
+    	</nav>
+
+<div class="container">
+	<br><br>
+	<div class="alert alert-info" role="alert">
+	  <h4 class="alert-heading font-weight-bold">刪除同意備案編號</h4>
+	  <p >此頁面提供使用者刪除備案相關資料,透過備案編號找到相對應的資料加以刪除，提供單筆刪除即透過excel表格上傳要刪除的備案編號列表</p><br>
+      <p >工作表名稱：刪除備案、第一欄位名稱：備案編號</p>        
+	  <p>(只接受xls/xlsx檔案)</p>
+
+	</div>
+	<form id="upload_file">
+<table class="table-fill">
+<thead>
+
+</thead>
+<tbody class="table-hover">
+
+<tr>
+<td class="text-left"></td>
+<td class="text-left">
+<button type="button" id='btn1' class="btn btn-warning btn-lg btn-block" onclick="multiFunction()">多筆刪除</button>    
+<button type="button" id='btn2' class="btn btn-danger btn-lg btn-block" onclick="singleFunction()">單筆刪除</button>
+</td>
+</tr>        
+  
+</tbody>
+</table>
+	</form>
+	
+
+</div>
+
+</div>
+
+
+<div class="modal fade bd-example-modal-xl" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">多筆刪除</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+<body>
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8"><h2> <b></b></h2></div>
+                    <div class="col-sm-4">
+                       
+                   
+
+                    </div>
+                </div>
+            </div>
+
+      <p >工作表名稱：刪除備案、第一欄位名稱：備案編號 (只接受xls/xlsx檔案)</p>        
+
+    	<form id="upload_file">
+
+	  <div class="custom-file">
+上傳想刪除備案編號檔案
+	    <input type="file"  id="file_uploader" accept=".xlsx">
+
+	  </div> 
+	</form>
+	
+	 <div id="data_content"></div>
+	 <div id="host_content"></div>
+              </body>
+
+                  </div>
+                </div>
+              </div>
+            </div>    
+              
+
+
+<div class="modal fade bd-example-modal-xl" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">單筆刪除</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+<body>
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8"><h2> <b></b></h2></div>
+                    <div class="col-sm-4">
+                       
+                   
+
+                    </div>
+                </div>
+            </div>
+	<form id="upload_file">
+
+	  <div class="custom-file">
+
+           欲刪除備案編號
+          <input class="form-control"style="background-color:#D4FFFF;" type="text" id="pro_num" ><br><br>
+            <div class="form-group">
+     <div class="row">
+        <pre class="tab">     </pre>   
+        <button type="button" class="btn btn-danger" id="db_btn1">刪除同意備案資料</button>
+         <button type="button" class="btn btn-warning" id="db_btn2">刪除電訪記錄資料</button>
+         <button type="button" class="btn btn-info" id="db_btn3">刪除管控表資料</button>
+         <button type="button" class="btn btn-primary" id="db_btn4">刪除台電電訪記錄</button>
+
+      </div> 
+  </div>
+	  </div> 
+	</form>
+	 <div id="data_content"></div>
+	 <div id="host_content"></div>
+              </body>
+
+                  </div>
+                </div>
+              </div>
+            </div>    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+<script>
+
+
+  
+ 
+
+    
+function multiFunction() {
+    $('#Modal2').modal('hide');
+    $('#Modal1').modal('show');
+}  
+function singleFunction() {
+    $('#Modal1').modal('hide');
+    $('#Modal2').modal('show');
+}      
+             
+ 
+
+
+  var db_btn1 = document.getElementById("db_btn1");
+
+  db_btn1.addEventListener('click',function(){
+          var pro_num = $('#pro_num').val(); 
+
+    var waiting_con = '<br><br><br><div class="d-flex flex-column align-items-center justify-content-center"><div class="row"><div class="spinner-border text-success" role="status" style="width: 5rem; height: 5rem;"><span class="sr-only">Loading...</span></div></div><br><div class="row"><strong>刪除資料中....</strong></div></div></div>'
+    $("#host_content").html(waiting_con);
+      table="record_data";
+      request = {"table" : table, "pro_num" : pro_num};
+    ajaxSend(request, "delete_row", "#host_content");
+  })
+  // btn listener
+  var db_btn2 = document.getElementById("db_btn2");
+  db_btn2.addEventListener('click',function(){
+      var pro_num = $('#pro_num').val(); 
+
+    var waiting_con = '<br><br><br><div class="d-flex flex-column align-items-center justify-content-center"><div class="row"><div class="spinner-border text-success" role="status" style="width: 5rem; height: 5rem;"><span class="sr-only">Loading...</span></div></div><br><div class="row"><strong>刪除資料中....</strong></div></div></div>'
+    $("#host_content").html(waiting_con);
+      table="tel_record";
+      request = {"table" : table, "pro_num" : pro_num};
+    ajaxSend(request, "delete_row", "#host_content");
+  })
+   // btn listener
+  var db_btn3 = document.getElementById("db_btn3");
+  db_btn3.addEventListener('click',function(){
+      var pro_num = $('#pro_num').val(); 
+
+    var waiting_con = '<br><br><br><div class="d-flex flex-column align-items-center justify-content-center"><div class="row"><div class="spinner-border text-success" role="status" style="width: 5rem; height: 5rem;"><span class="sr-only">Loading...</span></div></div><br><div class="row"><strong>刪除資料中....</strong></div></div></div>'
+    $("#host_content").html(waiting_con);
+      table="ctbl_record";
+      request = {"table" : table, "pro_num" : pro_num};
+    ajaxSend(request, "delete_row", "#host_content");
+  })    
+  var db_btn4 = document.getElementById("db_btn4");
+  db_btn4.addEventListener('click',function(){
+      var pro_num = $('#pro_num').val(); 
+
+    var waiting_con = '<br><br><br><div class="d-flex flex-column align-items-center justify-content-center"><div class="row"><div class="spinner-border text-success" role="status" style="width: 5rem; height: 5rem;"><span class="sr-only">Loading...</span></div></div><br><div class="row"><strong>刪除資料中....</strong></div></div></div>'
+    $("#host_content").html(waiting_con);
+      table="tel_power_record";
+      request = {"table" : table, "pro_num" : pro_num};
+    ajaxSend(request, "delete_row", "#host_content");
+  })         
+  </script>
+
+
+
+
+
+
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/datepicker.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/datepicker_zhtw.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/upload/popper.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/other/delete.js') }}?ver=3"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/ajaxSend.js') }}?ver=2"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/user/logout.js') }}?ver=2"></script>

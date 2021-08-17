@@ -1,0 +1,79 @@
+
+
+
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/bootstrap.css') }}">
+{% block body %}
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#"><img src="/static/img/670.jpg" width="30" height="30" class="d-inline-block align-top" alt="">工研院用系統</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/search">搜尋紀錄</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+{% endblock %}
+
+<br>
+<div class="container">
+	<h1>示範用</h1>
+	<br>
+	<form class="form-inline" method='post' action="{{ url_for('edit.setform') }}">
+	  <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Preference</label>
+	  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name = "action_option" onChange="sendData()">
+	  	<option selected="true" disabled="true" >選擇動作</option>
+	    <option type="submit" value="1">新增表單</option>
+	    <option type="submit" value="2">編輯表單</option>
+	  </select>
+	 </form>
+		<form method='post' action="{{ url_for('edit.getData') }}">
+		  <div class="row">
+			<div class="col-sm">
+			  <div class="form-group">
+			    <label for="exampleInput1">Example Input</label>
+			    <input type="text" class="form-control" id="exampleInput1"  placeholder="輸入" name = "username">
+			  </div>
+			  <div class="form-group">
+			    <label for="exampleInputPassword1">Password</label>
+			    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+			  </div>
+			  <div class="form-group">
+			    <label for="exampleInput3">Example Input</label>
+			    <input type="text" class="form-control" id="exampleInput3"  placeholder="輸入">
+			  </div>
+			  <div class="form-group">
+			    <label for="exampleInput4">Example Input</label>
+			    <input type="text" class="form-control" id="exampleInput4"  placeholder="輸入">
+			  </div>
+			</div>
+			<div class="col-sm">
+			<div class="form-group">
+			    <label for="exampleInput5">Example Input</label>
+			    <input type="text" class="form-control" id="exampleInput5"  placeholder="輸入">
+			  </div>
+			  <div class="form-group">
+			    <label for="exampleInput6">Example Input</label>
+			    <input type="text" class="form-control" id="exampleInput6"  placeholder="輸入">
+			  </div>
+			  <div class="form-group">
+			    <label for="exampleInput7">Example Input</label>
+			    <input type="text" class="form-control" id="exampleInput7"  placeholder="輸入">
+			  </div>
+			  <div class="form-group">
+			    <label for="exampleInput2">Example Input</label>
+			    <input type="text" class="form-control" id="exampleInput2"  placeholder="輸入">
+			  </div>
+			</div>
+		  </div>
+		  <button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+</div>
+{% endblock %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/home.js') }}"></script>

@@ -1,0 +1,23 @@
+
+ <h3>此份檔案案件總數為{{re_num}}筆</h3>
+
+
+
+
+
+
+<button type="submit" class="btn btn-danger" form="dn_btn1">下載補齊清冊</button>
+<form action="/other/downComplete" method="POST" id="dn_btn1"></form>
+
+  <script type="text/javascript">
+
+
+
+var sendCheck = document.getElementById("dn_btn1");
+sendCheck.addEventListener("click", function() { 
+    request = [""];
+    ajaxSend(request,"downComplete", "#dyn_content");
+
+});//sendCheck
+
+  </script>

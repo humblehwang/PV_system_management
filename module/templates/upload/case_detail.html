@@ -1,0 +1,212 @@
+  
+  {% set color = ['primary','success','danger','warning','info'] %}
+  {% for t in tag %}
+    {% if t != '' %}
+      <div class="alert alert-{{color[range(0, 5) | random]}}" role="alert">
+        此案件被標記為<b>{{t}}</b>的案子
+      </div>
+    {% endif %}
+  {% endfor %}
+
+
+  <div class="card-header" id="headingOne">
+    <h2 style="font-family: 'Microsoft JhengHei'; ">案件基本資料</h2> 
+      <h2 class="mb-0">
+        <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      點擊延展內容
+    </button>
+      </h2>
+    </div>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body">
+      <div class="row">
+
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="ele0">備案編號</label>
+            <input class="form-control" type="text" id="ele0" value="{{data_list[14]}}" disabled>
+          </div>
+          <div class="form-group">
+            <label for="ele0">併網審查受理編號</label>
+            <input class="form-control" type="text" id="ele18" value="{{data_list[22]}}" disabled>
+          </div>
+          <div class="form-group">
+            <label for="rec_id">申請人或機構</label>
+            <input class="form-control" type="text" id="ele1" value="{{data_list[0]}}" disabled>
+          </div>
+          <div class="form-group">
+            <label for="rec_id">案件類型</label>
+            <input class="form-control" type="text" id="ele2" value="{{data_list[1]}}" disabled>
+          </div>
+          <div class="form-group">
+            <label for="rec_id">同意備案核准容量(kW)</label>
+            <input class="form-control" type="text" id="ele3" value="{{data_list[2]}}" disabled>
+          </div>
+          <div class="form-group">
+            <label for="rec_id">設置位置</label>
+            <input class="form-control" type="text" id="ele4" value="{{data_list[3]}}" disabled>
+          </div>
+          <div class="form-group">
+            <label for="rec_id">縣市</label>
+            <input class="form-control" type="text" id="ele5" value="{{data_list[4]}}" disabled>
+          </div>
+          <div class="form-group">
+            <label for="rec_id">設置場址(地址)</label>
+            <input class="form-control" type="text" id="ele6" value="{{data_list[5]}}" disabled>
+          </div>
+          <div class="form-group">
+            <label for="rec_id">設置場址(地號)</label>
+            <textarea class="form-control" id="ele7" rows="8" disabled>{{data_list[6]}}</textarea>
+          </div>
+          <div class="form-group">
+            <label for="rec_id">出流海管</label>
+            <input class="form-control" type="text" id="review" value="{{review}}" disabled>
+          </div>            
+           <div class="form-group">
+            <label for="rec_id">統計分類(工研院)</label>
+            <input class="form-control" type="text" id="project_type_itri" value="{{data_list[27]}}" disabled>
+          </div>            
+        </div>
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="rec_id">專案類型</label>
+            <input class="form-control" type="text" id="ele8" value="{{data_list[7]}}" disabled>
+          </div>
+          <div class="form-group">
+            <label for="rec_id">售電方式</label>
+            <input class="form-control" type="text" id="ele9" value="{{data_list[8]}}" disabled>
+          </div>
+          <div class="form-group">
+            <label for="rec_id">同意備案申請日期</label>
+            <input class="form-control" type="text" id="ele10" value="{{data_list[9]}}" disabled>
+          </div>
+          <div class="form-group">
+            <label for="rec_id">同意備案核准日期</label>
+            <input class="form-control" type="text" id="ele11" value="{{data_list[10]}}" disabled>
+          </div>
+          <div class="form-group">
+            <label for="rec_id">案件狀態</label>
+            <input class="form-control" type="text" id="ele12" value="{{data_list[11]}}" disabled>
+          </div>
+          <div class="form-group">
+            <label for="rec_id">聯絡人姓名</label>
+            <input class="form-control" type="text" id="ele13" value="{{data_list[12]}}" disabled>
+          </div>
+          <div class="form-group">
+            <label for="rec_id">聯絡人電話</label>
+            <input class="form-control" type="text" id="ele14" value="{{data_list[13]}}" disabled>
+          </div>
+          <div class="form-group">
+            <label for="rec_id">簽約日期</label>
+            <input class="form-control" type="text" id="ele15" value="{{data_list[15]}}" disabled>
+          </div>
+          <div class="form-group">
+            <label for="rec_id">完工併聯日期</label>
+            <input class="form-control" type="text" id="ele16" value="{{data_list[16]}}" disabled>
+          </div>
+          <div class="form-group">
+            <label for="rec_id">完工併聯容量(kW)</label>
+            <input class="form-control" type="text" id="ele17" value="{{data_list[17]}}" disabled>
+          </div>
+           <div class="form-group">
+            <label for="rec_id">階段</label>
+            <input class="form-control" type="text" id="ele19" value="{{data_list[24]}}" disabled>
+          </div>
+                       <div class="form-group">
+            <label for="rec_id">總土地面積</label>
+            <input class="form-control" type="text" id="ele20" value="{{data_list[19]}}" disabled>
+          </div>
+                       <div class="form-group">
+            <label for="rec_id">使用分區</label>
+            <input class="form-control" type="text" id="ele21" value="{{data_list[20]}}" disabled>
+          </div>
+            <div class="form-group">
+            <label for="rec_id">用地類別</label>
+            <input class="form-control" type="text" id="ele22" value="{{data_list[21]}}" disabled>
+          </div>
+            
+            <div class="form-group">
+            <label for="rec_id">能源統計月報計入</label>
+            <input class="form-control" type="text" id="ele24" value="{{data_list[23]}}" disabled>
+            </div>
+                       <div class="form-group">
+            <label for="rec_id">部會</label>
+            <input class="form-control" type="text" id="ele25" value="{{data_list[25]}}" disabled>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<br>
+<div class="card-header" id="headingtwo">
+    <h2 style="font-family: 'Microsoft JhengHei'; ">此備案欲儲存電訪資料</h2> 
+      <h2 class="mb-0">
+        <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+      點擊延展內容
+    </button>
+      </h2>
+    </div>
+  <div class="collapse" id="collapseExample2">
+    <div class="card card-body">
+      <div class="row">
+
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="tele0">備案編號</label>
+            <input class="form-control" type="text" id="tele0" value="{{data_list2[0]}}" disabled>
+          </div>
+          <div class="form-group">
+            <label for="tele1">電訪時間</label>
+            <input class="form-control" type="text" id="tele1" value="{{data_list2[1]}}" disabled>
+          </div>
+          <div class="form-group">
+            <label for="tele2">案場施工狀況</label>
+            <input class="form-control" type="text" id="tele2" value="{{data_list2[2]}}" disabled>
+          </div>
+            
+          <div class="form-group">
+            <label for="tele2">案場問題分類</label>
+            <input class="form-control" type="text" id="tele4" value="{{data_list2[4]}}" disabled>
+          </div>            
+
+          <div class="form-group">
+            <label for="tele2">案場問題描述</label>
+            <input class="form-control" type="text" id="tele5" value="{{data_list2[5]}}" disabled>
+          </div>  
+            
+                      <div class="form-group">
+            <label for="tele2">案場預計完工日</label>
+            <input class="form-control" type="text" id="tele3" value="{{data_list2[3]}}" disabled>
+          </div>   
+        </div>
+          
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="tele4">台電問題分類</label>
+            <input class="form-control" type="text" id="tele7" value="{{data_list2[7]}}" disabled>
+          </div>
+            
+          <div class="form-group">
+            <label for="tele5">台電問題描述</label>
+            <input class="form-control" type="text" id="tele8" value="{{data_list2[8]}}" disabled>
+          </div>
+            
+          <div class="form-group">
+            <label for="tele6">預計案場併聯日</label>
+            <input class="form-control" type="text" id="tele6" value="{{data_list2[6]}}" disabled>
+          </div>
+           <div class="form-group">
+            <label for="tele6">備註</label>
+            <input class="form-control" type="text" id="tele9" value="{{data_list2[9]}}" disabled>
+          </div>
+          <div class="form-group">
+            <label for="tele7">電訪人員</label>
+            <input class="form-control" type="text" id="tele10" value="{{data_list2[10]}}" disabled>
+          </div>   
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script type="text/javascript">$('.collapse').collapse('hide')</script>

@@ -1,0 +1,14 @@
+{% if checknum == 1 %}
+<script>
+	alert("上傳成功");
+	window.close();
+</script>
+{% endif %}
+{% if checknum == 0 %}
+<script>
+	alert("上傳失敗，請查看伺服器log來了解更多訊息");
+	window.close();
+	//location.reload(true);
+</script>
+{{err}}
+{% endif %}

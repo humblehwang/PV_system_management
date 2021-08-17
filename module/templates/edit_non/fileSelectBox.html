@@ -1,0 +1,63 @@
+<form action="{{url_for('editNon.F_DownDiffile')}}" class="form_btn" method="POST" id="dn_btn" ></form>
+<form>
+  <div class="row">
+    <div class="col">
+    <!-- for changed Project Number -->
+    <label class="mr-sm-2" for="changedbox">欄位有變動的開發中案件</label>
+      <select class="custom-select" id="changedbox">
+		  <option selected disabled>選擇一個籌設許可名稱</option>
+		  {% for id in change %}
+		  <option>{{ id }}</option>
+		  {% endfor %}
+		</select>
+    </div>
+    <div class="col">
+      <!-- for new project number -->
+      <label class="mr-sm-2" for="newbox">全新的開發中案件</label>
+		<select class="custom-select" id="newbox">
+		  <option selected disabled>選擇一個籌設許可名稱</option>
+		  {% for id in new %}
+		  <option>{{ id }}</option>
+		  {% endfor %}
+		</select>
+    </div>
+    <div class="col">
+    	<div style="height: 40%;"></div>
+    	<button type="button" class="btn btn-dark" id="filechange" style="height:60%;">確認更改</button>
+	</div>
+	<div class="col">
+    	<div style="height: 40%;"></div>
+    	<button type="submit" class="btn btn-danger" form="dn_btn" style="height:60%;">下載變動清冊</button>
+	</div>
+  </div>
+</form>
+
+
+<script type="text/javascript">
+	var select1 = document.getElementById("changedbox");
+	var select2 = document.getElementById("newbox");
+	select1.addEventListener('change', function(){
+		var set_num = $( "#changedbox option:selected" ).text();
+        console.log("change:",set_num)
+	    request = {"set_num": set_num, "changed_flag": 1}
+	    ajaxSend(request, "fileEditDiff", "#data_content");
+	});
+	select2.addEventListener('change', function(){
+		var set_num = $( "#newbox option:selected" ).text();
+	    console.log("new:",set_num)
+        request = {"set_num": set_num, "changed_flag": 0}
+	    ajaxSend(request, "fileEditDiff", "#data_content");
+	});
+
+	// for send btn
+	var sendfilechange = document.getElementById('filechange');
+	sendfilechange.addEventListener('click', function(){
+			var loading_con = '<br><br><br><div class="d-flex flex-column align-items-center justify-content-center"><div class="row"><div class="spinner-border" role="status" style="width: 5rem; height: 5rem;"><span class="sr-only">Loading...</span></div></div><br><div class="row"><strong>儲存資料中....</strong></div></div></div>'
+			$("#data_content").html(loading_con);
+	        let check = 1;
+	        request = {"check" : check}
+
+console.log(request)
+	        ajaxSend(request, "fileEditStore", "#host_content");
+	});
+</script>

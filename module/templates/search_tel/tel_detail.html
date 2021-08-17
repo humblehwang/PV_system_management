@@ -1,0 +1,106 @@
+<div class="row">
+        <div class="col-sm">
+            <div class="form-group">
+		            <label for="tele0">備案編號</label>
+		            <input class="form-control" type="text" id="tele0" value="{{tel_detail[0]}}" disabled>
+		          </div>
+		          <div class="form-group">
+		            <label for="tele1">電訪日期</label>
+		            <input class="form-control" type="text" id="tele1" value="{{tel_detail[1]}}" >
+		          </div>
+		          <div class="form-group">
+		            <label for="tele2">案場施工狀況</label>
+                      <select value=""  class="custom-select" id="tele2">
+                        <option value={{tel_detail[2]}} >{{tel_detail[2]}}</option>
+                        <option value="未施工">未施工</option>
+                        <option value="已施工">已施工</option>
+                        <option value="已完工">已完工</option>
+                        <option value="放棄、暫不施作">放棄、暫不施作</option>
+                        <option value=""> </option>  
+                      </select>     
+		          </div>
+                    
+ 		          <div class="form-group">
+		            <label for="tele4">案場問題分類</label>
+                      <select class="custom-select" id="tele4">
+                        <option value=""   value={{tel_detail[4]}}>{{tel_detail[4]}}</option>
+                        <option value="02-04 相關文件未取得 - 路權">02-04 相關文件未取得 - 路權</option>
+                        <option value="02-05 相關文件未取得 - 使用執照、雜照">02-05 相關文件未取得 - 使用執照、雜照</option>
+                        <option value="03-01 缺工">03-01 缺工</option>
+                        <option value="04-01 缺料">04-01 缺料</option>
+                        <option value="05-01 鄉民因素">05-01 鄉民因素</option>
+                        <option value="06-01 其他原因">06-01 其他原因</option>
+                          <option value=""> </option>  
+                      </select>     
+		          </div>                   
+                    
+                    
+                   <div class="form-group">
+		            <label for="tele5">案場問題描述</label>
+		            <textarea class="form-control" type="text" id="tele5" rows="7">{{tel_detail[5]}}</textarea>
+		          </div>
+              
+		          <div class="form-group">
+		            <label for="tele3">案場預計完工日</label>
+		            <input class="form-control" type="text" id="tele3" value="{{tel_detail[3]}}" >
+		          </div>                    
+                    
+               
+     </div>               
+          
+          
+          
+          
+ <div class="col-sm">
+		          <div class="form-group">
+		            <label for="tele7">台電問題分類</label>
+                      <select class="custom-select" id="tele7">
+                        <option value={{tel_detail[7]}} >{{tel_detail[7]}}</option>
+                        <option value="簽約未完成">簽約未完成</option>
+                        <option value="路證未取得">路證未取得</option>
+                        <option value="細部協商(外線規劃設計)未取得">細部協商(外線規劃設計)未取得</option>
+                        <option value="線路補助費未繳交">線路補助費未繳交</option>
+                        <option value="外線未完工">外線未完工</option> 
+                        <option value="業者未報竣">業者未報竣</option>   
+                        <option value="掛表未完成">掛表未完成</option>   
+                        <option value="其他原因">其他原因</option> 
+                          <option value=""> </option>  
+                      </select>                       
+		          </div>
+                    
+                    
+		          <div class="form-group">
+		            <label for="tele8">台電問題描述</label>
+                      <input class="form-control" type="text" id="tele8" value="{{tel_detail[8]}}" >
+                   </div>
+  
+                    
+		          <div class="form-group">
+		            <label for="tele6">預計併聯日期</label>
+		            <input class="form-control" type="text" id="tele6" value="{{tel_detail[6]}}" >
+		          </div>
+                        
+		          <div class="form-group">
+		            <label for="tele9">備註</label>
+		            <input class="form-control" type="text" id="tele9" value="{{tel_detail[9]}}" >
+		          </div>                
+          <div class="form-group">
+		            <label for="tele10">此紀錄上傳時間</label>
+		            <input class="form-control" type="text" id="tele10" value="{{tel_detail[10]}}" disabled>
+		          </div>
+                         <div class="form-group">
+		            <label for="tele11">電訪人員</label>
+		            <input class="form-control" type="text" id="tele11" value="{{user_email}}" disabled>
+		          </div>
+        </div>
+          
+      </div>
+
+
+
+
+      <script type="text/javascript">
+        date_init('#tele1');
+        //date_init('#tele3');
+        //date_init('#tele6');
+      </script>
